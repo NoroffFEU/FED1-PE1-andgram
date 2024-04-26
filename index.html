@@ -7,6 +7,12 @@
     <title>WatchWisdom – Home</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/carousel.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Playfair+Display:wght@400..900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5609c1c9f7.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -19,7 +25,7 @@
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">About us</a></li>
                 </ul>
-                <div class="logo">WatchWise</div>
+                <img src="/images/logo_white.svg" class="logo">
                 <ul>
                     <li><a href="#">Login</a></li>
                     <li><a href="#">Register</a></li>
@@ -90,12 +96,27 @@
         </div>
     </section>
     <!-- End Of Featured Blog Posts Section -->
-
+    
     <!-- All Articles Grid -->
     <section>
         <div class="container">
-            <div class="blog-post-gallery">
+            <div class="blog-post-grid">
                 <!-- Add dynamic blog post content -->
+                <div class="blog-grid-card">
+                    <img src="/images/ern-gan-3vSGyBo8_pU-unsplash.jpg">
+                    <h3>New Rolex Submariner: A Masterpiece Unveiled</h3>
+                    <p>Discover the latest release of the iconic Rolex Submariner, showcasing innovation and timeless design.</p>
+                </div>
+                <div class="blog-grid-card">
+                    <img src="/images/alexander-andrews-anUOLC3zMD4-unsplash.jpg">
+                    <h3>Watch Collecting: A Beginner's Guide</h3>
+                    <p>Delve into the world of watch collecting and learn the essentials for starting and growing your collection.</p>
+                </div>
+                <div class="blog-grid-card">
+                    <img src="/images/blocks-fletcher-3_PaUEEcwMc-unsplash.jpg">
+                    <h3>The Rise of Smartwatches: Technology Meets Tradition</h3>
+                    <p>Explore the fusion of technology and tradition with the rise of smartwatches and their impact on the watch industry.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -104,17 +125,19 @@
     <!-- Footer -->
     <footer>
 
-        <div class="grey-bg-section">
-            <h2>Join Our Newsletter</h2>
-            <p>Sign up to our newsletter to receive the latest updates and offers.</p>
-            <form action="">
-                <input type="text" placeholder="youremail@example.com">
-                <input type="submit">
-            </form>
-        </div>
-        <div class="black-bg-section">
+        <div class="newsletter-section">
             <div class="container">
-                <div class="logo">WatchWise</div>
+                <h2>Join Our Newsletter</h2>
+                <p>Sign up to our newsletter to receive the latest updates and offers.</p>
+                <form action="">
+                    <input type="text" placeholder="youremail@example.com">
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+        </div>
+        <div class="footer-info-section">
+            <div class="container">
+                <img src="/images/logo_white.svg" class="logo">
                 <div class="footer-content-container">
                     <div>
                         <h3>Contact Us</h3>
@@ -122,8 +145,10 @@
                     </div>
                     <div>
                         <h3>Follow us</h3>
-                        <!-- add IG icon -->
-                        <!-- add FB icon -->
+                        <div class="social-media">
+                            <i class="fa-brands fa-square-instagram larger-icon"></i>
+                            <i class="fa-brands fa-square-facebook larger-icon"></i>
+                        </div>
                     </div>
                     <div>
                         <ul>
@@ -132,7 +157,7 @@
                             <li><a href="#">Login</a></li>
                             <li><a href="#">Register</a></li>
                         </ul>
-                        <p>© 2024 WatchWise. All Rights Reserved.</p>
+                        <p class="copyright">© 2024 WatchWise. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

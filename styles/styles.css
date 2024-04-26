@@ -10,7 +10,7 @@
     --clr-contrast-400: #DC1F18;
   
     --ff-primary: 'Lato', sans-serif;
-    --ff-accent: 'Playfair Display', sans-serif;
+    --ff-accent: 'Playfair Display', serif;
   
     --fs-300: clamp(1rem, 0.9565rem + 0.2174vw, 1.125rem);
     --fs-400: clamp(1.2rem, 1.0959rem + 0.5207vw, 1.4994rem);
@@ -28,7 +28,7 @@
   
   body {
     font-family: var(--ff-primary);
-    font-weight: 400;
+    font-weight: 300;
     font-size: var(--fs-300);
     line-height: 1.6;
     overflow-x: hidden;
@@ -55,7 +55,6 @@
   h2,
   h3 {
     line-height: 1;
-    font-weight: 700;
   }
   
   h2,
@@ -72,10 +71,13 @@
   
   h2 {
     font-size: var(--fs-600);
+    text-transform: uppercase;
+    font-weight: 500;
   }
   
   h3 {
     font-size: var(--fs-400);
+    font-weight: 500;
   }
   
   .subhead {
@@ -96,6 +98,16 @@
   /* ====================
          components
          ==================== */
+
+     button {
+          border: none;
+          outline: none;
+          padding: 0.6em 1em;
+          border-radius: 5px;
+          background-color: var(--clr-contrast-400);
+          color: white;
+          cursor: pointer;
+      }
   
   
     /* add button styles
@@ -144,8 +156,82 @@
   /* ====================
      Footer
      ==================== */
+
+     .newsletter-section {
+      text-align: center;
+      color: #fff;
+      background-color: var(--clr-primary-600);
+      padding: 5rem 0;
+     }
+
+     .newsletter-section form {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      margin-top: 2em;
+     }
+
+     .newsletter-section form input[type="text"]{
+        padding: 0.8em 12em;
+        border-radius: 5px;
+        border: 0;
+        outline: 0;
+     }
+
+     .newsletter-section form input[type="submit"] {
+      border: none;
+      outline: none;
+      text-transform: uppercase;
+      padding: 0.8em 2em;
+      border-radius: 5px;
+      background-color: var(--clr-contrast-400);
+      color: white;
+      cursor: pointer;
+     }
+
+     .footer-info-section {
+      background-color: var(--clr-primary-700);
+      color: #fff;
+      padding: 4rem 0;
+     }
+
+    
+     .footer-info-section .logo {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0 auto;
+     }
   
-  
+     .footer-content-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3em;
+     }
+
+     .footer-content-container ul {
+      list-style-type: none;
+      display: flex;
+      gap: 1em;
+      margin: 0 0 1em 0;
+     }
+     .footer-content-container a {
+      color: #fff;
+     }
+
+     .social-media {
+      display: flex;
+      justify-content: space-around;
+     }
+
+     .larger-icon {
+      font-size: 30px;
+     }
+
+     .copyright {
+      color: var(--clr-primary-600);
+     }
+
+
   /* ====================
      Header
      ==================== */
@@ -179,6 +265,11 @@
       margin-bottom: 1rem;
      }
 
+     .logo {
+      width: 150px;
+     }
+    
+
   /* ====================
      Hero section
      ==================== */
@@ -188,5 +279,21 @@
       text-align: center;
      }
 
+     /* ====================
+     Blog grid section
+     ==================== */
+
+     .blog-post-grid {
+      display: grid;
+      gap: .125rem;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+
+    .blog-grid-card {
+      padding: 1em;
+    }
+    .blog-grid-card img {
+      margin-bottom: 1em;
+    }
      
 
