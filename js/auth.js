@@ -44,19 +44,15 @@ async function handleLogin(formData) {
       // You can now use the obtained API key for further API requests
       console.log('API key:', apiKey);
       
-      // Optionally return or handle the obtained API key
-      return apiKey;
+      
+    // Optionally return or handle the obtained API key
+    return apiKey;
     } catch (error) {
-      console.error('Error:', error.message);
-      // Handle errors appropriately
+    console.error('Error:', error.message);
+    // Handle errors appropriately
     }
-  }
-  
-  // Example usage:
-  const loginFormData = {
-    email: 'andgra00184@stud.noroff.no',
-    password: 'Leaf_Beef85'
-  };
-  
-  handleLogin(loginFormData);
+    }
+
+// Export the handleLogin function
+export { handleLogin };
   
