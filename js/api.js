@@ -1,21 +1,27 @@
 
+function getAuthorizationHeaders() {
+    // Get access token and API key from storage
+    const accessToken = localStorage.getItem('accessToken');
+    const apiKey = localStorage.getItem('apiKey');
+  
+    // Check if both access token and API key are available
+    if (!accessToken || !apiKey) {
+      throw new Error('Access token or API key not found');
+    }
+  
+    // Construct headers with access token and API key
+    const headers = {
+      'Authorization': `Bearer ${accessToken}`,
+      'X-Noroff-API-Key': apiKey
+    };
+  
+    return headers;
+  }
+
 async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
     try {
-      // Get access token and API key from storage
-      const accessToken = localStorage.getItem('accessToken');
-      const apiKey = localStorage.getItem('apiKey');
-  
-      // Check if both access token and API key are available
-      if (!accessToken || !apiKey) {
-        throw new Error('Access token or API key not found');
-      }
-  
-      // Construct headers with access token and API key
-      const headers = {
-        'Authorization': `Bearer ${accessToken}`,
-        'X-Noroff-API-Key': apiKey,
-        'Content-Type': 'application/json'
-      };
+      // Get headers
+      const headers = getAuthorizationHeaders();
   
       // Construct request body for creating blog post
     const requestBody = {
@@ -50,12 +56,32 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
       // Handle errors appropriately
     }
   }
-
-console.log('API script running');
   
-  // Export the function
-  export { createBlogPost };
 
 
+  async function deleteBlogPost(postId) {
+    try {
+       // Get headers
+      const headers = getAuthorizationHeaders();
 
+      // Make a delete request to delete blog post
+      const response = await fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
+        method: 'DELETE',
+        headers: headers
+      });
+ 
+      if (!response.ok) {
+        throw new Error8('Failed to delete blog post');
+      }
+
+      // Handle successful response 
+      console.log('Blog post deleted successfully');
+      return true;
+    } catch (error) {
+        console.error('Error:', error.message);
+        return false;
+    }
+  }
+
+  export { createBlogPost, deleteBlogPost };
   
