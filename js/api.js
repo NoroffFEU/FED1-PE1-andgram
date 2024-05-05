@@ -1,4 +1,6 @@
 
+// Function to get authorization headers
+
 function getAuthorizationHeaders() {
     // Get access token and API key from storage
     const accessToken = localStorage.getItem('accessToken');
@@ -11,6 +13,7 @@ function getAuthorizationHeaders() {
   
     // Construct headers with access token and API key
     const headers = {
+        'Content-Type': 'application/json',  
       'Authorization': `Bearer ${accessToken}`,
       'X-Noroff-API-Key': apiKey
     };
@@ -18,70 +21,34 @@ function getAuthorizationHeaders() {
     return headers;
   }
 
-async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
+  // Function to fetch all blog posts
+async function fetchAllBlogPosts() {
     try {
-      // Get headers
-      const headers = getAuthorizationHeaders();
-  
-      // Construct request body for creating blog post
-    const requestBody = {
-        title: title,
-        body: body, // Optional
-        tags: tags.split(','), // Convert comma-separated string to array of strings
-        media: {
-         url: mediaUrl, // Optional
-         alt: mediaAlt // Optional
-    }
-  };
-  
-  
-      // Make a POST request to create blog post
-      const response = await fetch('https://v2.api.noroff.dev/social/posts', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(requestBody)
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to create blog post');
-      }
-  
-      // Handle successful response
-      const responseData = await response.json();
-      console.log('Blog post created:', responseData);
-      // Optionally return or handle the response data
-      return responseData;
+        // Get authorization headers
+        const headers = getAuthorizationHeaders();
+        
+        // Make a GET request to fetch all blog posts with authorization headers
+        const response = await fetch('https://v2.api.noroff.dev/social/profiles/andgram/posts', {
+            headers: headers
+        });
+        
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error('Failed to fetch blog posts');
+        }
+        
+        // Parse the JSON response and extract the 'data' field
+        const { data } = await response.json();
+        
+        // Return the array of blog posts
+        return data;
     } catch (error) {
-      console.error('Error:', error.message);
-      // Handle errors appropriately
+        // If an error occurs, log the error and throw it again for handling in the calling function
+        console.error('Error fetching blog posts:', error);
+        throw error;
     }
-  }
-  
+}
+    
 
-
-  async function deleteBlogPost(postId) {
-    try {
-       // Get headers
-      const headers = getAuthorizationHeaders();
-
-      // Make a delete request to delete blog post
-      const response = await fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
-        method: 'DELETE',
-        headers: headers
-      });
- 
-      if (!response.ok) {
-        throw new Error8('Failed to delete blog post');
-      }
-
-      // Handle successful response 
-      console.log('Blog post deleted successfully');
-      return true;
-    } catch (error) {
-        console.error('Error:', error.message);
-        return false;
-    }
-  }
-
-  export { createBlogPost, deleteBlogPost };
+  export { getAuthorizationHeaders, fetchAllBlogPosts };
   

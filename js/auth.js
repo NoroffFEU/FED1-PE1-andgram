@@ -53,6 +53,10 @@ async function handleLogin(formData) {
     }
     }
 
+
+    // Add function for registering
+
+
 // Export the handleLogin function
 export { handleLogin };
   
