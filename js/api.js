@@ -13,15 +13,13 @@ function getAuthorizationHeaders() {
   
     // Construct headers with access token and API key
     const headers = {
-        'Content-Type': 'application/json',  
+      'Content-Type': 'application/json',  
       'Authorization': `Bearer ${accessToken}`,
       'X-Noroff-API-Key': apiKey
     };
   
     return headers;
   }
-
-    
 
   export { getAuthorizationHeaders };
   

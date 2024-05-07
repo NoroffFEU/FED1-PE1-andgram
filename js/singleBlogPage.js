@@ -3,7 +3,9 @@ import { getAuthorizationHeaders } from './api.js';
 // Function to extract ID from URL parameters
 function getPostIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
+    console.log('Getting ID from URL')
     return urlParams.get('id');
+    
 }
 
 // Function to display blog post details
@@ -53,10 +55,22 @@ async function displayBlogPostDetails() {
         postContainer.appendChild(titleElement);
         postContainer.appendChild(imageElement);
         postContainer.appendChild(contentElement);
+
+    
+        populateEditFrom(data); // Populate form with fetched post
     } catch (error) {
         console.error('Error fetching and displaying blog post details');
     }
 }
 
+function populateEditFrom(postData) {
+    document.getElementById('title').value = postData.title;
+    document.getElementById('content').value = postData.body; // Assuming `body` corresponds to `content`
+    document.getElementById('tags').value = postData.tags.join(', '); // Convert tags array to string
+    document.getElementById('imageUrl').value = postData.media ? postData.media.url : ''; // Set media URL if available
+}
+
 // Call function to display blog post details when the page loads
 window.onload = displayBlogPostDetails;
+
+export { getPostIdFromUrl }

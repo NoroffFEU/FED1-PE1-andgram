@@ -65,25 +65,6 @@ async function displayAllBlogPosts() {
     }
 } 
 
-   async function editBlogPost(postId, updatedData) {
-    try {
-        const headers = getAuthorizationHeaders();
-        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${postId}`, {
-            method: 'PUT',
-            headers: headers,
-            body: JSON.stringify(updatedData)
-        });
-        if (!response.ok) {
-            throw new Error('Failed to edit blog post');
-        }
-        const responseData = await response.json();
-        console.log('Blog post edited successfully:', responseData);
-        return responseData;
-    } catch (error) {
-        console.error('Error editing blog post:', error);
-        throw error;
-    }
-}
 
 async function deleteBlogPost(postId) {
     try {
