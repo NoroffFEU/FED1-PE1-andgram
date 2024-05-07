@@ -117,12 +117,12 @@
      Layout
      ==================== */
   
-    section {
+    section, main {
       padding: 4rem 0;
     }
 
     @media (min-width: 40em) {
-      section {
+      section, main{
         padding: 7rem 0;
       }
     }

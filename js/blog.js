@@ -1,70 +1,14 @@
 
-
 import { getAuthorizationHeaders } from './api.js';
 
-async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
-    try {
-        // Get headers
-        const headers = getAuthorizationHeaders();
-
-        // Construct request body for creating blog post
-        const requestBody = {
-            title: title,
-            body: body, // Optional
-            tags: tags.split(','), // Convert comma-separated string to array of strings
-            media: {
-                url: mediaUrl, // Optional
-                alt: mediaAlt // Optional
-            }
-        };
-
-        // Make a POST request to create blog post
-        const response = await fetch('https://v2.api.noroff.dev/social/posts', {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to create blog post');
-        }
-
-        // Handle successful response
-        const responseData = await response.json();
-        console.log('Blog post created:', responseData);
-        // Optionally return or handle the response data
-        return responseData;
-    } catch (error) {
-        console.error('Error:', error.message);
-        // Handle errors appropriately
-    }
-}
-
-
-// Function to handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
-
-    // Get form values
-    const title = document.getElementById('title').value;
-    const body = document.getElementById('body').value;
-    const tags = document.getElementById('tags').value;
-    const mediaUrl = document.getElementById('media-url').value;
-    const mediaAlt = document.getElementById('media-alt').value;
-
-    // Call createBlogPost function with form values
-    createBlogPost(title, body, tags, mediaUrl, mediaAlt);
-}
-
-
-// Function to display all blog posts
+ // Function to display all blog posts in grid
 async function displayAllBlogPosts() {
     try {
         // Get authorization headers
         const headers = getAuthorizationHeaders();
 
         // Fetch all blog posts from API with authorization headers
-        const response = await fetch('https://v2.api.noroff.dev/social/profiles/andgram/posts', {
+        const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram', {
             headers: headers
         });
 
@@ -82,6 +26,12 @@ async function displayAllBlogPosts() {
 
         // Loop through each blog post and create HTML elements to display them
         data.forEach(post => {
+            // Create anchor element for the post
+            const postLink = document.createElement('a');
+            postLink.href = `post/post.html?id=${post.id}`;
+            postLink.classList.add('post-link');
+
+            // Create post element
             const postElement = document.createElement('div');
             postElement.classList.add('post');
 
@@ -96,28 +46,29 @@ async function displayAllBlogPosts() {
                 imageElement.alt = 'Fallback Image';
             }
 
+            // Create title element
             const titleElement = document.createElement('h3');
             titleElement.textContent = post.title;
 
-            const bodyElement = document.createElement('p');
-            bodyElement.textContent = post.body;
-
-            // Append title and body to post element
+            // Append title and image to post element
             postElement.appendChild(titleElement);
-            postElement.appendChild(bodyElement);
             postElement.appendChild(imageElement);
 
-            postContainer.appendChild(postElement);
+            // Append post element to post link
+            postLink.appendChild(postElement);
+
+            // Append post link to post container
+            postContainer.appendChild(postLink);
         });
     } catch (error) {
         console.error('Error fetching and displaying blog posts:', error);
     }
-}
+} 
 
-async function editBlogPost(postId, updatedData) {
+   async function editBlogPost(postId, updatedData) {
     try {
         const headers = getAuthorizationHeaders();
-        const response = await fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/${postId}`, {
             method: 'PUT',
             headers: headers,
             body: JSON.stringify(updatedData)
@@ -140,7 +91,7 @@ async function deleteBlogPost(postId) {
         const headers = getAuthorizationHeaders();
 
         // Make a delete request to delete blog post
-        const response = await fetch(`https://v2.api.noroff.dev/social/posts/${postId}`, {
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             method: 'DELETE',
             headers: headers
         });
@@ -159,7 +110,7 @@ async function deleteBlogPost(postId) {
 }
 
 
-export { displayAllBlogPosts, createBlogPost, deleteBlogPost, editBlogPost };
+export { displayAllBlogPosts };
 
 
 
