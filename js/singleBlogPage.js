@@ -65,9 +65,9 @@ async function displayBlogPostDetails() {
 
 function populateEditFrom(postData) {
     document.getElementById('title').value = postData.title;
-    document.getElementById('content').value = postData.body; // Assuming `body` corresponds to `content`
-    document.getElementById('tags').value = postData.tags.join(', '); // Convert tags array to string
-    document.getElementById('imageUrl').value = postData.media ? postData.media.url : ''; // Set media URL if available
+    document.getElementById('content').value = postData.body;
+    document.getElementById('tags').value = postData.tags.join(', ');
+    document.getElementById('imageUrl').value = postData.media.url;
 }
 
 // Call function to display blog post details when the page loads

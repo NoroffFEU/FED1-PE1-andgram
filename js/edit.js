@@ -24,7 +24,7 @@ window.onload = async function() {
         // Populate form fields with fetched post data
         document.getElementById('title').value = data.title;
         document.getElementById('content').value = data.body;
-        document.getElementById('tags').value = data.tags.join(', ');
+        document.getElementById('tags').value = data.tags.join(', '); 
         document.getElementById('imageUrl').value = data.media.url;
         document.getElementById('imageAlt').value = data.media.alt;
     } catch (error) {
@@ -38,12 +38,31 @@ document.getElementById('edit-post-form').addEventListener('submit', async funct
     const postId = getPostIdFromUrl();
     const formData = new FormData(this);
 
+     // Split tags string into an array and trim whitespace
+     let tags = formData.get('tags');
+     if (tags) {
+         tags = tags.split(',').map(tag => tag.trim());
+     } else {
+         tags = []; // Set tags to an empty array if it's not provided
+     }
+
+    // Convert form data to JSON
+    const jsonData = {};
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
+    });
+
+    // Assign the tags array to the 'tags' property in the JSON data
+    jsonData['tags'] = tags;
+    
+    const jsonPayload = JSON.stringify(jsonData);
+
     try {
         const headers = getAuthorizationHeaders();
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             method: 'PUT',
             headers: headers,
-            body: formData
+            body: jsonPayload
         });
 
         if (!response.ok) {
