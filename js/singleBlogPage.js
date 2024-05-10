@@ -4,7 +4,6 @@ import { updateUI } from './UI.js';
 // Function to extract ID from URL parameters
 function getPostIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log('Getting ID from URL')
     return urlParams.get('id');
     
 }
@@ -15,15 +14,15 @@ async function displayBlogPostDetails() {
         // Get post ID from URL
         const postId = getPostIdFromUrl();
 
-        if(!postId) {
+        if (!postId) {
             throw new Error('Post ID not found in URL');
         }
 
         // Get authentication headers
         const headers = getAuthorizationHeaders();
 
-         // Fetch blog post details from API using post ID
-         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
+        // Fetch blog post details from API using post ID
+        const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             headers: headers
         });
 
@@ -35,6 +34,13 @@ async function displayBlogPostDetails() {
 
         // Display blog post details on the page
         const postContainer = document.getElementById('post-container');
+
+        // Check if postContainer exists before proceeding
+        if (!postContainer) {
+            console.error('Post container not found');
+            return; // Exit the function if postContainer doesn't exist
+        }
+
         postContainer.innerHTML = '';
 
         const titleElement = document.createElement('h1');
@@ -61,7 +67,7 @@ async function displayBlogPostDetails() {
 
         populateEditFrom(data); // Populate form with fetched post
     } catch (error) {
-        console.error('Error fetching and displaying blog post details');
+        console.error('Error fetching and displaying blog post details:', error);
     }
 }
 
