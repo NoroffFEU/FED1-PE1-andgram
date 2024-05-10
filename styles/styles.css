@@ -296,6 +296,10 @@
      Blog grid section
      ==================== */
 
+     .post-grid-section h2 {
+      text-align: center;
+     }
+
      .blog-post-grid {
       display: grid;
       gap: .125rem;

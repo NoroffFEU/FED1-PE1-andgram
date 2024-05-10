@@ -4,12 +4,12 @@ import { getAuthorizationHeaders } from './api.js';
  // Function to display all blog posts in grid
 async function displayAllBlogPosts() {
     try {
-        // Get authorization headers
-        const headers = getAuthorizationHeaders();
 
         // Fetch all blog posts from API with authorization headers
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram', {
-            headers: headers
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         if (!response.ok) {

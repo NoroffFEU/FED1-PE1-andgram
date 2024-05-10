@@ -22,8 +22,8 @@
         <div class="container">
             <nav id="menu">
                 <ul>
-                    <li><a href="/post/index.html">Blog</a></li>
-                    <li><a href="#">About us</a></li>
+                    <li><a href="#posts-container">Blog</a></li>
+                    <li><a href="/info/about.html">About us</a></li>
                 </ul>
                 <div id="logoContainer">
                     <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
@@ -101,7 +101,8 @@
     
     <!-- All Articles Grid -->
     <section>
-        <div class="container">
+        <div class="container post-grid-section">
+            <h2>Featured Articles</h2>
             <div class="blog-post-grid" id="posts-container">
                 <!-- Add dynamic blog post content -->
                 
@@ -153,10 +154,23 @@
 <!-- End of Footer -->
 
     <script src="/js/carousel.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+        
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        </script>
+        
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/blog.js"></script>
     <script type="module" src="/js/UI.js"></script>
     <script type="module" src="/js/auth.js"></script>
+        
        
 </body>
 

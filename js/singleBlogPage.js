@@ -18,12 +18,11 @@ async function displayBlogPostDetails() {
             throw new Error('Post ID not found in URL');
         }
 
-        // Get authentication headers
-        const headers = getAuthorizationHeaders();
-
         // Fetch blog post details from API using post ID
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
-            headers: headers
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         if (!response.ok) {

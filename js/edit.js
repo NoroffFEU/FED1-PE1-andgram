@@ -83,6 +83,8 @@ async function handleFormSubmission(event) {
     }
 }
 
+
+
 // Call fetchAndDisplayBlogPost() when the window loads
 window.onload = function() {
     fetchAndDisplayBlogPost();
