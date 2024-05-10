@@ -1,4 +1,5 @@
 import { getAuthorizationHeaders } from './api.js';
+import { updateUI } from './UI.js';
 
 // Function to extract ID from URL parameters
 function getPostIdFromUrl() {
@@ -56,7 +57,8 @@ async function displayBlogPostDetails() {
         postContainer.appendChild(imageElement);
         postContainer.appendChild(contentElement);
 
-    
+        updateUI();
+
         populateEditFrom(data); // Populate form with fetched post
     } catch (error) {
         console.error('Error fetching and displaying blog post details');

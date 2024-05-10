@@ -32,6 +32,20 @@ function updateUI() {
 
         const logoContainer = document.getElementById('logoContainer');
         logoContainer.innerHTML += editModeLabel; 
+
+       // Add event listener to the edit button
+       const editButton = document.createElement('button');
+       editButton.textContent = 'Edit post';
+       buttonContainer = document.getElementById('buttonContainer');
+       buttonContainer.appendChild(editButton);
+
+       editButton.addEventListener('click', function() {
+           // Replace post.html with edit.html in the URL
+           const currentUrl = window.location.href;
+           const editUrl = currentUrl.replace('post.html', 'edit.html');
+           window.location.href = editUrl;
+       });
+
     } else {
         // If user is not authenticated, revert to default header and menu
         header.style.backgroundColor = '#000'; // Reset header color
@@ -43,3 +57,6 @@ function updateUI() {
 window.onload = function() {
     updateUI();
 };
+
+
+export { updateUI }

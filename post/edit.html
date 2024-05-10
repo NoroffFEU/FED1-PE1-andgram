@@ -14,22 +14,24 @@
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav id="menu">
-                <ul>
-                    <li><a href="/post/index.html">Blog</a></li>
-                    <li><a href="#">About us</a></li>
-                </ul>
-                <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
-                <ul>
-                    <li><a href="/account/login.html">Login</a></li>
-                    <li><a href="/account/register.html">Register</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!-- End Of Header -->
+ <header id="header">
+    <div class="container">
+        <nav id="menu">
+            <ul>
+                <li><a href="/post/index.html">Blog</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+            <div id="logoContainer">
+                <a href="index.html"><img src="/images/logo_white.svg" class="logo"></a>
+            </div>
+            <ul id="rigthUl">
+                <li><a href="/account/login.html">Login</a></li>
+                <li><a href="/account/register.html">Register</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- End Of Header -->
 
     <h1>Edit Blog Post</h1>
     <form id="edit-post-form">
@@ -80,6 +82,7 @@
     <!-- End of Footer -->
 
     <script type="module" src="../js/edit.js"></script>
+    <script type="module" src="../js/UI.js"></script>
     
 </body>
 </html>
