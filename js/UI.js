@@ -1,4 +1,6 @@
 import { checkAuth } from './auth.js';
+import { getPostIdFromUrl } from './singleBlogPage.js';
+import { deleteBlogPost } from './blog.js';
 
 // Function to update UI based on authentication
 function updateUI() {
@@ -33,13 +35,26 @@ function updateUI() {
         const logoContainer = document.getElementById('logoContainer');
         logoContainer.innerHTML += editModeLabel; 
 
-        // add edit button, if button container exist
-        const buttonContainer = document.getElementById('buttonContainer');
-        if (buttonContainer !== null) {
+        // add edit button and delete button, if button containers exist
+        const editButtonContainer = document.getElementById('editButtonContainer');
+        const deleteButtonContainer = document.getElementById('deleteButtonContainer');
+        const postId = getPostIdFromUrl();
+
+        if (editButtonContainer && deleteButtonContainer !== null) {
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit post';
-            buttonContainer.appendChild(editButton);
-        
+            editButtonContainer.appendChild(editButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete post';
+            deleteButtonContainer.appendChild(deleteButton);
+
+            deleteButton.addEventListener('click', function() {
+                deleteBlogPost(postId, function() {
+                    window.location.href = '../index.html';
+                });
+            });
+            
             editButton.addEventListener('click', function() {
                 // Replace post.html with edit.html in the URL
                 const currentUrl = window.location.href;

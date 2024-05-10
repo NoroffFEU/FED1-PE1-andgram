@@ -7,21 +7,23 @@
   <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header id="header">
-    <div class="container">
-        <nav id="menu">
-            <ul>
-                <li><a href="/post/index.html">Blog</a></li>
-                <li><a href="#">About us</a></li>
-            </ul>
-            <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
-            <ul>
-                <li><a href="/account/login.html">Login</a></li>
-                <li><a href="/account/register.html">Register</a></li>
-            </ul>
-        </nav>
-    </div>
+ <!-- Header -->
+ <header id="header">
+  <div class="container">
+      <nav id="menu">
+          <ul>
+              <li><a href="/post/index.html">Blog</a></li>
+              <li><a href="#">About us</a></li>
+          </ul>
+          <div id="logoContainer">
+              <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
+          </div>
+          <ul id="rigthUl">
+              <li><a href="/account/login.html">Login</a></li>
+              <li><a href="/account/register.html">Register</a></li>
+          </ul>
+      </nav>
+  </div>
 </header>
 <!-- End Of Header -->
 
@@ -57,7 +59,8 @@
       </div>
   </section>
   
-  <script src="../js/blog.js" type="module"></script>
+  <script src="../js/createPost.js" type="module"></script>
+  <script src="../js/UI.js" type="module"></script>
 
 </body>
 </html>

@@ -83,15 +83,21 @@ async function deleteBlogPost(postId) {
 
         // Handle successful response 
         console.log('Blog post deleted successfully');
+
+        // Redirect to index.html after successful deletion
+        window.location.href = '../index.html';
+        
         return true;
     } catch (error) {
         console.error('Error:', error.message);
         return false;
     }
+
+    
 }
 
 
-export { displayAllBlogPosts };
+export { displayAllBlogPosts, deleteBlogPost };
 
 
 

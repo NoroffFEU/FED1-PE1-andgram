@@ -52,6 +52,8 @@ function handleFormSubmit(event) {
 
     // Call createBlogPost function with form values
     createBlogPost(title, body, tags, mediaUrl, mediaAlt);
+
+    alert('Blog post created successfully');
 }
 
 // Attach handleFormSubmit function to the form's submit event
