@@ -28,25 +28,29 @@
           height: 100%;
           position: absolute;
           background-size: cover;
-          padding: 2em;
           display: flex;
+          justify-content: space-between;
           align-items: center;
+          background-color: #fff;
+      }
+
+      .card > div:first-child {
+        padding-left: 2em;
       }
       
+      .card .image-container {
+        position: relative;
+        width: 375px;
+        height: 375px; 
+        background-size: cover;
+        background-position: center; 
+    }
+
        .card:not(.active) {
           top: 0;
           left: -100%;
       }
       
-      .card1 {
-          background-image: url(/images/feature-placeholder-1\ copy.jpg);
-      }
-      .card2 {
-          background-image: url(/images/feature-placeholder-2.jpg);
-      }
-      .card3 {
-          background-image: url(/images/feature-placeholder-3.jpg);
-      }
       
       span.next, span.prev {
           position: absolute;
@@ -122,15 +126,6 @@
               margin-top: 300px;
           }
       
-          .card1 {
-              background-image: url(/images/VERT-feature-placeholder-1.jpg);
-          }
-          .card2 {
-              background-image: url(/images/VERT-feature-placeholder-2.jpg);
-          }
-          .card3 {
-              background-image: url(/images/VERT-feature-placeholder-3.jpg);
-          }
       }
 
       @keyframes next1 {
