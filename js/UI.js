@@ -5,7 +5,7 @@ import { deleteBlogPost } from './blog.js';
 // Function to update UI based on authentication
 function updateUI() {
     const header = document.getElementById('header');
-    const menu = document.getElementById('menu');
+    const menu = document.getElementById('primary-navigation');
 
     if(checkAuth()) {
         // If user is authenticated, update header and menu

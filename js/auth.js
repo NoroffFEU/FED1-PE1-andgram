@@ -72,7 +72,7 @@ function handleLogout() {
 // Add event listener to the logout button
 
 document.addEventListener('DOMContentLoaded', function () {
-    const menu = document.getElementById('menu'); // Assuming menu is a parent element containing the logout button
+    const menu = document.getElementById('primary-navigation'); // Assuming menu is a parent element containing the logout button
     if (menu) {
         menu.addEventListener('click', function (event) {
             if (event.target.matches('#logoutButton')) {

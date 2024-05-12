@@ -15,16 +15,17 @@
 <body>
  <!-- Header -->
  <header id="header">
-    <div class="container">
-        <nav id="menu">
+    <div class="wrapper">
+        <div class="mobile-nav-toggle" id="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" role="button">
+            <span class="sr-only">Menu</span>
+          </div>
+          <div id="logoContainer">
+            <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
+        </div>
+        <nav id="primary-navigation" class="primary-navigation" data-visible="false">
             <ul>
-                <li><a href="../index.html#posts-container">Blog</a></li>
+                <li><a href="#posts-container">Blog</a></li>
                 <li><a href="/info/about.html">About us</a></li>
-            </ul>
-            <div id="logoContainer">
-                <a href="../index.html"><img src="/images/logo_white.svg" class="logo"></a>
-            </div>
-            <ul id="rigthUl">
                 <li><a href="/account/login.html">Login</a></li>
                 <li><a href="/account/register.html">Register</a></li>
             </ul>
