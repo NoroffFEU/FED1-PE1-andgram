@@ -32,7 +32,6 @@ async function fetchThreePostsByIds() {
 
 function populateCards(posts) {
     posts.forEach((post, index) => {
-        console.log('Post object:', post); // Log the post object for debugging
         const card = document.querySelector(`.card${index + 1}`);
         if (card) {
             const innerContainer = card.querySelector('div');

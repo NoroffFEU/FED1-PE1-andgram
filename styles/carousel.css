@@ -9,7 +9,7 @@
 
        .slide-container {
           position: relative;
-          width: 900px;
+          max-width: 900px;
           height: 375px;
           box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
           margin: 0 auto;
@@ -35,7 +35,7 @@
       }
 
       .card > div:first-child {
-        padding-left: 2em;
+        padding: 2em;
       }
       
       .card .image-container {
@@ -111,20 +111,25 @@
       @media (max-width: 50em) {
       
           .slide-container {
-              width: 400px;
+              min-width: 400px;
               height: 600px;
           }
       
           .slide-container .slides .card {
               width: 100%;
               height: 100%;
-              align-items: baseline;
+              flex-direction: column-reverse;
           }
       
-          .slide-container .slides .card div {
+          .card > div:first-child {
               width: 100%;
-              margin-top: 300px;
+              padding: 0 1.4em 3em;
           }
+
+          .card .image-container {
+            width: 100%; 
+            height: 320px;
+        }
       
       }
 
