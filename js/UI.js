@@ -5,11 +5,13 @@ import { deleteBlogPost } from './blog.js';
 // Function to update UI based on authentication
 function updateUI() {
     const header = document.getElementById('header');
-    const menu = document.getElementById('primary-navigation');
+    const editModeBanner = document.getElementById('editModeBanner');
+    const menu = document.querySelector('#primary-navigation ul');
 
     if(checkAuth()) {
         // If user is authenticated, update header and menu
-        header.style.backgroundColor = '#DC1F18'; 
+        header.style.backgroundColor = 'var(--clr-primary-600)'; 
+        editModeBanner.style.display = 'block';
 
         // Remove 'login' and 'register' menu items if they exist
         const loginItem = menu.querySelector('a[href="/account/register.html"]');
@@ -25,15 +27,8 @@ function updateUI() {
         const extraMenuItem = '<li><a href="/account/create-post.html">Create post</a></li>' +
                               '<li><button id="logoutButton">Logout</button></li>';
 
-        // Append new menu items to the rigth <ul> element
-        const rigthUlElement = document.getElementById('rigthUl');
-        rigthUlElement.innerHTML += extraMenuItem;
-
-        // Add "edit mode" under header logo
-        const editModeLabel = '<p>(edit mode)</p>';
-
-        const logoContainer = document.getElementById('logoContainer');
-        logoContainer.innerHTML += editModeLabel; 
+        // Append new menu items to nav
+        menu.innerHTML += extraMenuItem;
 
         // add edit button and delete button, if button containers exist
         const editButtonContainer = document.getElementById('editButtonContainer');
