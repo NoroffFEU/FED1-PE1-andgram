@@ -559,10 +559,10 @@
      }
 
      /* ====================
-     Edit blog post page
+     Edit / ceate blog post page
      ==================== */
 
-     .edit-blog-post-container {
+     .edit-blog-post-container, .create-post-form-container {
       display: flex;
       flex-direction: column;
       padding: 0 0 4rem 0;
@@ -577,7 +577,7 @@
       }
     }
 
-    .edit-blog-post-container h1 {
+    .edit-blog-post-container h1, .create-post-form-container h1 {
       font-size: var(--fs-700);
       font-family: var(--ff-primary);
       margin-bottom: 1em;
