@@ -37,13 +37,13 @@ function populateCards(posts) {
             const innerContainer = card.querySelector('div');
             const titleElement = innerContainer.querySelector('h3');
             const contentElement = innerContainer.querySelector('p');
-            const buttonElement = innerContainer.querySelector('button');
             const imageContainer = card.querySelector('.image-container');
 
             // Access the title property from the data object
             const title = post.data.title;
             const body = post.data.body;
             const imageUrl = post.data.media.url;
+            const postId = post.data.id;
 
             // Split body text into an array of sentences
             const sentences = body.split(/[.!?]/);
@@ -59,9 +59,9 @@ function populateCards(posts) {
             imageContainer.style.backgroundImage = `url('${imageUrl}')`;
 
 
-            buttonElement.addEventListener('click', () => {
-                // Add code to navigate to the full blog post page
-                console.log(`Clicked on Read more for post with ID ${post.id}`);
+            card.addEventListener('click', () => {
+                // Navigate to the full blog post
+                window.location.href = `/post/post.html?id=${postId}`;
             });
         }
     });
