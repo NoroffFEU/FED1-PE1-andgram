@@ -28,7 +28,7 @@ async function displayAllBlogPosts() {
         data.forEach(post => {
             // Create anchor element for the post
             const postLink = document.createElement('a');
-            postLink.href = `post/post.html?id=${post.id}`;
+            postLink.href = `post/index.html?id=${post.id}`;
             postLink.classList.add('post-link');
 
             // Create post element

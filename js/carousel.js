@@ -61,7 +61,7 @@ function populateCards(posts) {
 
             card.addEventListener('click', () => {
                 // Navigate to the full blog post
-                window.location.href = `/post/post.html?id=${postId}`;
+                window.location.href = `/post/index.html?id=${postId}`;
             });
         }
     });

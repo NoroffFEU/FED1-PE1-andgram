@@ -24,7 +24,7 @@ function updateUI() {
         }
 
         // Add extra menu options
-        const extraMenuItem = '<li><a href="/account/create-post.html">Create post</a></li>' +
+        const extraMenuItem = '<li><a href="/account/create-index.html">Create post</a></li>' +
                               '<li><button id="logoutButton">Logout</button></li>';
 
         // Append new menu items to nav
@@ -51,9 +51,9 @@ function updateUI() {
             });
             
             editButton.addEventListener('click', function() {
-                // Replace post.html with edit.html in the URL
+                // Replace index.html with edit.html in the URL
                 const currentUrl = window.location.href;
-                const editUrl = currentUrl.replace('post.html', 'edit.html');
+                const editUrl = currentUrl.replace('index.html', 'edit.html');
                 window.location.href = editUrl;
             });
         }

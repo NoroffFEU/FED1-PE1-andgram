@@ -73,9 +73,9 @@ async function handleFormSubmission(event) {
         if (!response.ok) {
             throw new Error('Failed to update blog post');
         }
-       // Replace post.html with edit.html in the URL
+       // Replace index.html with edit.html in the URL
        const currentUrl = window.location.href;
-       const editUrl = currentUrl.replace('edit.html', 'post.html');
+       const editUrl = currentUrl.replace('edit.html', 'index.html');
        window.location.href = editUrl;
 
     } catch (error) {
