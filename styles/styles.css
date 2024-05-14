@@ -340,6 +340,7 @@
   /* ====================
      Header
      ==================== */
+     
 
      .edit-mode-banner {
       background-color: var(--clr-contrast-400);
@@ -370,9 +371,26 @@
       list-style-type: none;
      }
 
-     header a {
+     nav a {
+      text-decoration: none;
       color: #fff;
-     }
+      position: relative;
+    }
+    
+    nav a:after {
+      content: "";
+      position: absolute;
+      background-color: var(--clr-contrast-400);
+      height: 2px;
+      width: 0%;
+      left: 0;
+      bottom: -8px;
+      transition: 250ms;
+    }
+    
+    nav a:hover:after {
+      width: 100%;
+    }
 
      header button {
       text-transform: none;
