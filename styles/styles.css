@@ -247,12 +247,18 @@
       border: none;
       outline: none;
       text-transform: uppercase;
-      padding: 0.8em 2em;
+      padding: 0.6em 2em;
       border-radius: 5px;
       background-color: var(--clr-contrast-400);
       color: white;
       cursor: pointer;
+      transition: 250ms ease;
      }
+
+     .newsletter-section form input[type="submit"]:hover {
+      scale: 1.07;
+      background-color: #c2120c;
+    }
 
      .footer-info-section {
       background-color: var(--clr-primary-700);
@@ -281,6 +287,11 @@
      }
      .footer-content-container a {
       color: #fff;
+      transition: 250ms ease;
+     }
+
+     .footer-content-container a:hover {
+      color: var(--clr-primary-500);
      }
 
      .social-media {
@@ -384,12 +395,16 @@
       height: 2px;
       width: 0%;
       left: 0;
-      bottom: -8px;
+      bottom: -6px;
       transition: 250ms;
     }
     
     nav a:hover:after {
       width: 100%;
+    }
+
+    nav .active {
+      color: var(--clr-primary-500);
     }
 
      header button {
@@ -523,6 +538,11 @@
     
     .blog-post-grid .post img {
       order: -1;
+      transition: 250ms ease;
+    }
+
+    .blog-post-grid .post img:hover {
+      filter: brightness(80%);
     }
 
     .blog-post-grid .post h3 {
