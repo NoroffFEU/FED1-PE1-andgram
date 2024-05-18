@@ -636,6 +636,10 @@
       margin-bottom: 6em;
      }
 
+     .post-container .post-author-date {
+      margin-bottom: 1em;
+     }
+
      /* ====================
      Edit / ceate blog post page
      ==================== */

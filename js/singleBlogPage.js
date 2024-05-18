@@ -1,4 +1,3 @@
-import { getAuthorizationHeaders } from './api.js';
 import { updateUI } from './UI.js';
 
 // Function to extract ID from URL parameters
@@ -55,10 +54,22 @@ async function displayBlogPostDetails() {
             imageElement.alt = 'Fallback Image';
         }
 
+        // Create author and date element
+         const date = new Date(data.created);
+         const formattedDate = date.toLocaleDateString('en-US', {
+             year: 'numeric',
+             month: 'long',
+             day: 'numeric'
+         });
+        const authorAndDateElement = document.createElement('p');
+        authorAndDateElement.textContent = `Published ${formattedDate} by ${data.author.name}`;
+        authorAndDateElement.classList.add('post-author-date');
+
         const contentElement = document.createElement('p');
         contentElement.textContent = data.body;
 
         postContainer.appendChild(titleElement);
+        postContainer.appendChild(authorAndDateElement);
         postContainer.appendChild(imageElement);
         postContainer.appendChild(contentElement);
 
@@ -72,6 +83,7 @@ async function displayBlogPostDetails() {
 
 function populateEditFrom(postData) {
     document.getElementById('title').value = postData.title;
+    document.getElementById('post-author-date').value = postData.authorAndDateElement;
     document.getElementById('content').value = postData.body;
     document.getElementById('tags').value = postData.tags.join(', ');
     document.getElementById('imageUrl').value = postData.media.url;

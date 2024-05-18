@@ -53,6 +53,7 @@ async function displayAllBlogPosts() {
             // Append title and image to post element
             postElement.appendChild(titleElement);
             postElement.appendChild(imageElement);
+            
 
             // Append post element to post link
             postLink.appendChild(postElement);
