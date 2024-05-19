@@ -75,13 +75,16 @@ async function displayBlogPostDetails() {
 
         updateUI();
 
-        populateEditFrom(data); // Populate form with fetched post
+        // Check if form exist and populate form with fetched post
+        if (document.getElementById('edit-post-form')) {
+            populateEditForm(data);
+        }
     } catch (error) {
         console.error('Error fetching and displaying blog post details:', error);
     }
 }
 
-function populateEditFrom(postData) {
+function populateEditForm(postData) {
     document.getElementById('title').value = postData.title;
     document.getElementById('post-author-date').value = postData.authorAndDateElement;
     document.getElementById('content').value = postData.body;

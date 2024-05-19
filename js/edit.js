@@ -73,6 +73,10 @@ async function handleFormSubmission(event) {
         if (!response.ok) {
             throw new Error('Failed to update blog post');
         }
+
+        // Set localStorage flag for update success
+       localStorage.setItem('updateSuccess', 'true');
+
        // Replace index.html with edit.html in the URL
        const currentUrl = window.location.href;
        const editUrl = currentUrl.replace('edit.html', 'index.html');
@@ -84,11 +88,12 @@ async function handleFormSubmission(event) {
 }
 
 
-
-// Call fetchAndDisplayBlogPost() when the window loads
-window.onload = function() {
-    fetchAndDisplayBlogPost();
-};
+// Call fetchAndDisplayBlogPost() when the window loads if on edit.html
+if (window.location.pathname.includes('edit.html')) {
+    window.onload = function() {
+      fetchAndDisplayBlogPost();
+    };
+}
 
 // Add event listener for form submission
 document.getElementById('edit-post-form').addEventListener('submit', handleFormSubmission);
