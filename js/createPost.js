@@ -29,9 +29,19 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
 
         // Handle successful response
         const responseData = await response.json();
-        console.log('Blog post created:', responseData);
-        // Optionally return or handle the response data
-        return responseData;
+        console.log('Response data:', responseData);
+
+        // Accessing the id from the data object
+        const newPostId = responseData.data.id;
+
+        // Constructing the URL with the id parameter
+        const newPostUrl = `../post/index.html?id=${newPostId}`;
+
+        // Redirecting to the new post's URL
+        window.location.href = newPostUrl;
+
+        localStorage.setItem('newPostSuccess', 'true');
+
     } catch (error) {
         console.error('Error:', error.message);
         // Handle errors appropriately
@@ -52,8 +62,6 @@ function handleFormSubmit(event) {
 
     // Call createBlogPost function with form values
     createBlogPost(title, body, tags, mediaUrl, mediaAlt);
-
-    alert('Blog post created successfully');
 }
 
 // Attach handleFormSubmit function to the form's submit event

@@ -38,11 +38,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
+   // Function to check new post creation status
+   function checkNewPostStatus() {
+    if (localStorage.getItem('newPostSuccess') === 'true') {
+      console.log("New post creation was successful");
+      localStorage.removeItem('newPostSuccess');
+      showPopup('New post created successfully!');
+    }
+  }
+
+  // Function to check new post creation status
+  function checkDeleteStatus() {
+    if (localStorage.getItem('deletePostSuccess') === 'true') {
+      console.log("Post was deleted successfully");
+      localStorage.removeItem('deletePostSuccess');
+      showPopup('Post was deleted successfully!');
+    }
+  }
+
   // Ensure popup logic runs when page loads
   function checkAllStatuses() {
     checkUpdateStatus();
     checkLoginStatus();
     checkLogoutStatus();
+    checkNewPostStatus();
+    checkDeleteStatus();
   }
 
   checkAllStatuses();

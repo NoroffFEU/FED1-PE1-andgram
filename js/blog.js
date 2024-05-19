@@ -88,7 +88,7 @@ async function deleteBlogPost(postId) {
         // Redirect to index.html after successful deletion
         window.location.href = '../index.html';
         
-        return true;
+        localStorage.setItem('deletePostSuccess', 'true');
     } catch (error) {
         console.error('Error:', error.message);
         return false;
