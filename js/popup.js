@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-
-  function showSuccessPopup() {
+  
+  // General function to show a popup with a custom message
+  function showPopup(message) {
     const popup = document.getElementById('successPopup');
     if (popup) {
+      popup.innerText = message;
       popup.style.display = 'block';
       setTimeout(() => {
         popup.style.display = 'none';
@@ -12,12 +14,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
+  // Function to check the update status
   function checkUpdateStatus() {
-    const updateStatus = localStorage.getItem('updateSuccess');
-    if (updateStatus === 'true') {
+    if (localStorage.getItem('updateSuccess') === 'true') {
       localStorage.removeItem('updateSuccess');
-      showSuccessPopup();
+      showPopup('Blog post updated successfully!');
     }
   }
-  checkUpdateStatus();
+
+  // Function to check login status
+  function checkLoginStatus() {
+    if (localStorage.getItem('loginSuccess') === 'true') {
+      localStorage.removeItem('loginSuccess');
+      showPopup('Login successful!');
+    }
+  }
+
+  // Function to check logout status
+  function checkLogoutStatus() {
+    if (localStorage.getItem('logoutSuccess') === 'true') {
+      localStorage.removeItem('logoutSuccess');
+      showPopup('Logout successful!');
+    }
+  }
+
+  // Ensure popup logic runs when page loads
+  function checkAllStatuses() {
+    checkUpdateStatus();
+    checkLoginStatus();
+    checkLogoutStatus();
+  }
+
+  checkAllStatuses();
 });

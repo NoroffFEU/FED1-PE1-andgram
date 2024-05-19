@@ -65,6 +65,8 @@ function handleLogout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('apiKey');
 
+    localStorage.setItem('logoutSuccess', 'true');
+
     window.location.href = '../index.html';
     alert('You have been logged out!')
 }

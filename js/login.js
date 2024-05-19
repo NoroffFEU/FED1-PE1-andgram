@@ -42,6 +42,7 @@ async function handleLogin(email, password) {
     // Store access token and API key in local storage
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('apiKey', apiKey);
+    localStorage.setItem('loginSuccess', 'true');
 
     // Redirect user to index page
     window.location.href = '../index.html';
