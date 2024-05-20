@@ -112,6 +112,15 @@ function updateUI() {
       }
     }
 
+    // Function to check new registration status
+    function checkRegisterStatus() {
+      if (localStorage.getItem('registerSuccess') === 'true') {
+        console.log("User successfully registered");
+        localStorage.removeItem('registerSuccess');
+        showPopup('User successfully registered!');
+      }
+    }
+
     // Ensure popup logic runs when page loads
   function checkAllStatuses() {
     checkUpdateStatus();
@@ -119,6 +128,7 @@ function updateUI() {
     checkLogoutStatus();
     checkNewPostStatus();
     checkDeleteStatus();
+    checkRegisterStatus();
   }
 
   export { checkAllStatuses, updateUI };

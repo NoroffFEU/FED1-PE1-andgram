@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateUI();
     checkAllStatuses();
     setupNavToggle();
+    registerUser();
     
     // Display blog posts in grid on home page
     const pageId = document.body.id;

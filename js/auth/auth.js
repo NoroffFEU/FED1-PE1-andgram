@@ -54,9 +54,10 @@ function registerUser() {
             })
             .then(data => {
                 // Registration successful
-                console.log('Registration successful!');
+                localStorage.setItem('logoutSuccess', 'true');
                 // Store the access token in localStorage
                 localStorage.setItem('accessToken', data.accessToken);
+                
 
                 // Redirect user to login page
                 window.location.href = 'login.html';
@@ -149,7 +150,6 @@ function handleLogout() {
     localStorage.setItem('logoutSuccess', 'true');
 
     window.location.href = '../index.html';
-    alert('You have been logged out!')
 }
 
 // Add event listener to the logout button
