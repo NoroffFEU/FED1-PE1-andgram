@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
         displayAllBlogPosts();
     } else if (pageId === 'PostPage') {
         displayBlogPostDetails()
+    } else if (pageId === 'editPostPage') {
+        fetchAndDisplayBlogPost()
     }
 });
 

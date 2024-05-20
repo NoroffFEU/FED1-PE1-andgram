@@ -1,3 +1,5 @@
+ import { getAuthorizationHeaders } from "../auth/auth.js";
+ 
  // Function to display all blog posts in grid
  async function displayAllBlogPosts() {
     try {
@@ -213,7 +215,7 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
     }
 }
 
-// Function to handle form submission
+// Function to handle form submission to create post
 function handleCreatePostFormSubmit(event) {
     event.preventDefault();
 
