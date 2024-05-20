@@ -505,6 +505,17 @@
       color: var(--clr-primary-700);
     }
 
+    .blog-grid-head-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #searchField {
+      margin-bottom: 2em;
+      margin-top: 1em;
+    }
+
      /* ====================
      Login / register form
      ==================== */
