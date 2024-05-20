@@ -16,13 +16,14 @@ import {
 } from './blogPosts/index.js';
 
 import { 
-    checkAllStatuses, updateUI
+    checkAllStatuses, updateUI, setupNavToggle
 } from './uiUtiles/index.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     updateUI();
     checkAllStatuses();
+    setupNavToggle();
     
     // Display blog posts in grid on home page
     const pageId = document.body.id;
