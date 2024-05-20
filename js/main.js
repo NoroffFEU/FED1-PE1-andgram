@@ -19,7 +19,16 @@ import {
     checkAllStatuses, updateUI, setupNavToggle
 } from './uiUtiles/index.js';
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Ensure only logged in user has access
+    const pageId = document.body.id;
+    if ((pageId === 'editPostPage' || pageId === 'createPostPage') && !checkAuth()) {
+    window.location.href = '../account/login.html';
+    return;
+};
+    // Common initializations
     checkAuth();
     updateUI();
     checkAllStatuses();
@@ -27,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     registerUser();
     
     // Display blog posts in grid on home page
-    const pageId = document.body.id;
     if (pageId === 'indexPage') {
         displayAllBlogPosts();
     // Display full blog post
@@ -48,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         blogPostForm.addEventListener('submit', handleCreatePostFormSubmit);  
     }
 
+   
+    
     
 });
 
