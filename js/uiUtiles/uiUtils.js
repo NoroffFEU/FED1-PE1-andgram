@@ -1,4 +1,4 @@
-import { getPostIdFromUrl } from '../blogPosts/index.js';
+import { getPostIdFromUrl, deleteBlogPost } from '../blogPosts/index.js';
 import { checkAuth } from '../auth/index.js';
 
 // Function to update UI based on authentication

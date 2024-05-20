@@ -1,4 +1,4 @@
- import { getAuthorizationHeaders } from "../auth/auth.js";
+ import { getAuthorizationHeaders } from "../auth/index.js";
  
  // Function to display all blog posts in grid
  async function displayAllBlogPosts() {
@@ -129,8 +129,6 @@ async function displayBlogPostDetails() {
         postContainer.appendChild(imageElement);
         postContainer.appendChild(contentElement);
 
-        updateUI();
-
         // Check if form exist and populate form with fetched post
         if (document.getElementById('edit-post-form')) {
             populateEditForm(data);
@@ -230,6 +228,7 @@ function handleCreatePostFormSubmit(event) {
     createBlogPost(title, body, tags, mediaUrl, mediaAlt);
 }
 
+
 // Function for editing blog post
 async function fetchAndDisplayBlogPost() {
     try {
@@ -254,14 +253,14 @@ async function fetchAndDisplayBlogPost() {
         document.getElementById('tags').value = data.tags.join(', '); 
         document.getElementById('imageUrl').value = data.media.url;
         document.getElementById('imageAlt').value = data.media.alt;
-
-        updateUI();
     } catch (error) {
         console.error('Error fetching and displaying blog post details:', error);
     }
 }
 
-async function handleEditFormAndDisplay() {
+// Send PUT request to update blog post 
+async function handleEditForm(event) {
+    event.preventDefault();
     try {
         const postId = getPostIdFromUrl();
         const formData = new FormData(this);
@@ -298,62 +297,6 @@ async function handleEditFormAndDisplay() {
         const editUrl = currentUrl.replace('edit.html', 'index.html');
         window.location.href = editUrl;
 
-        // Display blog post details
-        const postResponse = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!postResponse.ok) {
-            throw new Error('Failed to fetch blog post details');
-        }
-
-        const { data } = await postResponse.json();
-
-        const postContainer = document.getElementById('post-container');
-        if (!postContainer) {
-            console.error('Post container not found');
-            return;
-        }
-        postContainer.innerHTML = '';
-
-        const titleElement = document.createElement('h1');
-        titleElement.textContent = data.title;
-
-        const imageElement = document.createElement('img');
-        if (data.media && data.media.url) {
-            imageElement.src = data.media.url;
-            imageElement.alt = data.media.alt || 'Image';
-        } else {
-            console.warn('Image URL is missing or invalid:', data.media);
-            imageElement.src = 'images/fallback-img.jpg';
-            imageElement.alt = 'Fallback Image';
-        }
-
-        const date = new Date(data.created);
-        const formattedDate = date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        const authorAndDateElement = document.createElement('p');
-        authorAndDateElement.textContent = `Published ${formattedDate} by ${data.author.name}`;
-        authorAndDateElement.classList.add('post-author-date');
-
-        const contentElement = document.createElement('p');
-        contentElement.textContent = data.body;
-
-        postContainer.appendChild(titleElement);
-        postContainer.appendChild(authorAndDateElement);
-        postContainer.appendChild(imageElement);
-        postContainer.appendChild(contentElement);
-
-        updateUI();
-
-        if (document.getElementById('edit-post-form')) {
-            populateEditForm(data);
-        }
     } catch (error) {
         console.error('Error handling edit form and displaying blog post details:', error);
     }
@@ -372,7 +315,7 @@ export {
     deleteBlogPost,
     handleCreatePostFormSubmit,
     fetchAndDisplayBlogPost,
-    handleEditFormAndDisplay,
+    handleEditForm,
     getPostIdFromUrl,
     displayBlogPostDetails
 };

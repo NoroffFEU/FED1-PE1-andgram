@@ -3,7 +3,7 @@ import {
     deleteBlogPost,
     handleCreatePostFormSubmit,
     fetchAndDisplayBlogPost,
-    handleEditFormAndDisplay,
+    handleEditForm,
     getPostIdFromUrl,
     displayBlogPostDetails
 } from './blogPosts.js';
@@ -13,7 +13,7 @@ export {
     deleteBlogPost,
     handleCreatePostFormSubmit,
     fetchAndDisplayBlogPost,
-    handleEditFormAndDisplay,
+    handleEditForm,
     getPostIdFromUrl,
     displayBlogPostDetails
 };
