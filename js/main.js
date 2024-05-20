@@ -22,44 +22,68 @@ import {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Ensure only logged in user has access
     const pageId = document.body.id;
     if ((pageId === 'editPostPage' || pageId === 'createPostPage') && !checkAuth()) {
-    window.location.href = '../account/login.html';
-    return;
-};
-    // Common initializations
+        window.location.href = '../account/login.html';
+        return;
+    }
+
     checkAuth();
     updateUI();
     checkAllStatuses();
     setupNavToggle();
     registerUser();
-    
-    // Display blog posts in grid on home page
+
     if (pageId === 'indexPage') {
         displayAllBlogPosts();
-    // Display full blog post
-    } else if (pageId === 'PostPage') {
-        displayBlogPostDetails()
-    // Display blog post data in edit form
-    } else if (pageId === 'editPostPage') {
-        fetchAndDisplayBlogPost()
-    }
-    // Handle edit form submit
-    const editPostForm = document.getElementById('edit-post-form');
-    if(editPostForm) {
-        editPostForm.addEventListener('submit', handleEditForm);  
-    }
-    // Handle create post form submit
-    const blogPostForm = document.getElementById('blog-post-form');
-    if(blogPostForm) {
-        blogPostForm.addEventListener('submit', handleCreatePostFormSubmit);  
+
+        const searchField = document.getElementById('searchField');
+
+        searchField.addEventListener('input', debounce(filterBlogPosts, 300));
+
+        function filterBlogPosts() {
+            const searchQuery = searchField.value.toLowerCase();
+            const blogPosts = document.querySelectorAll('.post');
+
+            blogPosts.forEach(post => {
+                const title = post.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchQuery)) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        function debounce(func, delay) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
     }
 
-   
-    
-    
+    else if (pageId === 'PostPage') {
+        displayBlogPostDetails();
+    }
+    else if (pageId === 'editPostPage') {
+        fetchAndDisplayBlogPost();
+    }
+
+    const editPostForm = document.getElementById('edit-post-form');
+    if (editPostForm) {
+        editPostForm.addEventListener('submit', handleEditForm);
+    }
+
+    const blogPostForm = document.getElementById('blog-post-form');
+    if (blogPostForm) {
+        blogPostForm.addEventListener('submit', handleCreatePostFormSubmit);
+    }
 });
+
 
 
 
