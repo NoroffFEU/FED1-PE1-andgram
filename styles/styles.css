@@ -595,8 +595,8 @@
       margin-bottom: 2em;
      }
 
-     .post-container p {
-      margin-bottom: 6em;
+     .post-container div {
+      margin-bottom: 6em; 
      }
 
      .post-container .post-author-date {

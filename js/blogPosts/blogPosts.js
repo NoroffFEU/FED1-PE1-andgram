@@ -63,6 +63,11 @@ function getPostIdFromUrl() {
     return urlParams.get('id');
 }
 
+// Function to replace newline characters with <br> tags
+function convertNewlinesToBreaks(text) {
+    return text.replace(/\n/g, '<br>');
+}
+
 // Function to display blog post details
 async function displayBlogPostDetails() {
     try {
@@ -121,8 +126,12 @@ async function displayBlogPostDetails() {
         authorAndDateElement.textContent = `Published ${formattedDate} by ${data.author.name}`;
         authorAndDateElement.classList.add('post-author-date');
 
-        const contentElement = document.createElement('p');
-        contentElement.textContent = data.body;
+        // Convert newlines to <br> tags in the content
+        const formattedContent = convertNewlinesToBreaks(data.body);
+
+        // Create a div element to hold the content and set its innerHTML
+        const contentElement = document.createElement('div');
+        contentElement.innerHTML = formattedContent;
 
         postContainer.appendChild(titleElement);
         postContainer.appendChild(authorAndDateElement);
