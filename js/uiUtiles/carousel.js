@@ -1,34 +1,40 @@
-
-
-// Function to fetch a single blog post by ID
-async function fetchPostById(id) {
-    const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${id}`);
+// Function to fetch all blog posts
+async function fetchAllPosts() {
+    const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram');
     if (!response.ok) {
-        throw new Error(`Failed to fetch post with ID ${id}`);
+        throw new Error('Failed to fetch posts');
     }
-    const postData = await response.json();
-    return postData;
+    const responseData = await response.json();
+    
+    // Check if the response data contains the 'data' property
+    if (!responseData.hasOwnProperty('data') || !Array.isArray(responseData.data)) {
+        throw new Error('Invalid data format: expected an array under "data" property');
+    }
+    
+    return responseData.data;
 }
 
-// Function to fetch three specific blog posts by their IDs
-async function fetchThreePostsByIds() {
-    const postIds = [
-        '1b018f2f-b3de-412e-8f08-00414d3060a8', 
-        '86ee5464-59c2-41a8-9f39-97f75ed33f9b', 
-        'a570fc35-f027-4164-8359-f08f879d6580'];
-    const posts = [];
+// Function to get the latest three blog posts
+async function fetchLatestThreePosts() {
+    try {
+        const allPosts = await fetchAllPosts();
 
-    for (const id of postIds) {
-        try {
-            const postData = await fetchPostById(id);
-            posts.push(postData);
-        } catch (error) {
-            console.error(error.message);
-        }
+        // Sort posts by date in descending order to get the latest posts first
+        allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Get the latest three posts
+        const latestThreePosts = allPosts.slice(0, 3);
+
+        return latestThreePosts;
+    } catch (error) {
+        console.error(error.message);
+        return [];
     }
-
-    return posts;
 }
+
+// Example usage: Fetch and log the latest three posts
+fetchLatestThreePosts().then(posts => console.log(posts));
+
 
 function populateCards(posts) {
     posts.forEach((post, index) => {
@@ -39,11 +45,11 @@ function populateCards(posts) {
             const contentElement = innerContainer.querySelector('p');
             const imageContainer = card.querySelector('.image-container');
 
-            // Access the title property from the data object
-            const title = post.data.title;
-            const body = post.data.body;
-            const imageUrl = post.data.media.url;
-            const postId = post.data.id;
+            // Access the title, body, and media properties directly from the post object
+            const title = post.title;
+            const body = post.body;
+            const imageUrl = post.media.url;
+            const postId = post.id;
 
             // Split body text into an array of sentences
             const sentences = body.split(/[.!?]/);
@@ -58,7 +64,6 @@ function populateCards(posts) {
             // Set background image URL
             imageContainer.style.backgroundImage = `url('${imageUrl}')`;
 
-
             card.addEventListener('click', () => {
                 // Navigate to the full blog post
                 window.location.href = `/post/index.html?id=${postId}`;
@@ -67,8 +72,9 @@ function populateCards(posts) {
     });
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchThreePostsByIds()
+    fetchLatestThreePosts()
         .then(posts => {
             populateCards(posts);
         })

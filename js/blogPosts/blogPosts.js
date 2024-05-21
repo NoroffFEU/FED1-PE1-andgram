@@ -272,15 +272,21 @@ async function handleEditForm(event) {
             tags = [];
         }
 
-        const jsonData = {};
-        formData.forEach((value, key) => {
-            jsonData[key] = value;
-        });
-        jsonData['tags'] = tags;
+        const jsonData = {
+            title: formData.get('title'),
+            body: formData.get('content'),
+            tags: tags,
+            media: {
+                url: formData.get('imageUrl'),
+                alt: formData.get('imageAlt')
+            }
+        };
 
         const jsonPayload = JSON.stringify(jsonData);
 
         const headers = getAuthorizationHeaders();
+        headers['Content-Type'] = 'application/json';  // Ensure Content-Type header is set
+
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             method: 'PUT',
             headers: headers,
@@ -301,6 +307,7 @@ async function handleEditForm(event) {
         console.error('Error handling edit form and displaying blog post details:', error);
     }
 }
+
 
 function populateEditForm(postData) {
     document.getElementById('title').value = postData.title;
