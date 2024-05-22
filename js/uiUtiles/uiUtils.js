@@ -1,13 +1,12 @@
 import { getPostIdFromUrl, deleteBlogPost } from '../blogPosts/index.js';
 import { checkAuth } from '../auth/index.js';
 
-console.log('UI running');
-
 // Function to update UI based on authentication
 function updateUI() {
     const header = document.getElementById('header');
     const editModeBanner = document.getElementById('editModeBanner');
     const menu = document.querySelector('#primary-navigation ul');
+    const footerMenu = document.querySelector('#footerMenu');
 
     if(checkAuth()) {
         // If user is authenticated, update header and menu
@@ -31,6 +30,7 @@ function updateUI() {
 
         // Append new menu items to nav
         menu.innerHTML += extraMenuItem;
+        footerMenu.innerHTML += extraMenuItem;
 
         // add edit button and delete button, if button containers exist
         const editButtonContainer = document.getElementById('editButtonContainer');
