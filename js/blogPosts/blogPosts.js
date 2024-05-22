@@ -70,7 +70,15 @@ function convertNewlinesToBreaks(text) {
 
 // Function to display blog post details
 async function displayBlogPostDetails() {
+    const loadingElement = document.getElementById('loading');
+    const postContainer = document.getElementById('post-container');
+
     try {
+        //Show loading spinner
+        console.log('show loading spinner');
+        loadingElement.classList.remove('hidden');
+        postContainer.classList.add('hidden');
+
         // Get post ID from URL
         const postId = getPostIdFromUrl();
 
@@ -91,8 +99,7 @@ async function displayBlogPostDetails() {
 
         const { data } = await response.json();
 
-        // Display blog post details on the page
-        const postContainer = document.getElementById('post-container');
+        console.log('Data retrieved successfully:', data);
 
         // Check if postContainer exists before proceeding
         if (!postContainer) {
@@ -144,6 +151,10 @@ async function displayBlogPostDetails() {
         }
     } catch (error) {
         console.error('Error fetching and displaying blog post details:', error);
+    } finally {
+        // Hide loading spinner and show blog post content
+        loadingElement.classList.add('hidden');
+        postContainer.classList.remove('hidden');
     }
 }
 
