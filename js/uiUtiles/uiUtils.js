@@ -13,14 +13,12 @@ function updateUI() {
         editModeBanner.style.display = 'block';
 
         // Remove 'login' and 'register' menu items if they exist
-        const loginItem = Array.from(menu.querySelectorAll('a'))
-        .find(link => link.textContent.trim() === 'Login');
+        const loginItem = document.getElementById('login');
 
         if (loginItem) {
             loginItem.parentElement.remove();
         }
-        const registerItem = Array.from(menu.querySelectorAll('a'))
-        .find(link => link.textContent.trim() === 'Register');
+        const registerItem = document.getElementById('register')
         if (registerItem) {
             registerItem.parentElement.remove();
         }
@@ -123,6 +121,14 @@ function updateUI() {
         showPopup('User successfully registered!');
       }
     }
+
+    // fucntion to display popup when submiting newsletter form
+    document.getElementById('newsLetterForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      showPopup('Thank you for subscribing!');
+      this.reset();
+    });
 
     // Ensure popup logic runs when page loads
   function checkAllStatuses() {
