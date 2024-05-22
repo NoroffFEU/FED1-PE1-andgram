@@ -1,14 +1,10 @@
 import { 
-    getAuthorizationHeaders,
     checkAuth,
-    handleLogin,
-    handleLogout,
     registerUser
 } from './auth/index.js';
 
 import { 
     displayAllBlogPosts,
-    deleteBlogPost,
     handleCreatePostFormSubmit,
     fetchAndDisplayBlogPost,
     handleEditForm,
