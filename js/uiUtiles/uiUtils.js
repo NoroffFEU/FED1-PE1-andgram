@@ -13,17 +13,20 @@ function updateUI() {
         editModeBanner.style.display = 'block';
 
         // Remove 'login' and 'register' menu items if they exist
-        const loginItem = menu.querySelector('a[href="/account/register.html"]');
+        const loginItem = Array.from(menu.querySelectorAll('a'))
+        .find(link => link.textContent.trim() === 'Login');
+
         if (loginItem) {
             loginItem.parentElement.remove();
         }
-        const registerItem = menu.querySelector('a[href="/account/login.html"]');
+        const registerItem = Array.from(menu.querySelectorAll('a'))
+        .find(link => link.textContent.trim() === 'Register');
         if (registerItem) {
             registerItem.parentElement.remove();
         }
 
         // Add extra menu options
-        const extraMenuItem = '<li><a href="/account/create-post.html">Create post</a></li>' +
+        const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/account/create-post.html">Create post</a></li>' +
                               '<li><button id="logoutButton">Logout</button></li>';
 
         // Append new menu items to nav
