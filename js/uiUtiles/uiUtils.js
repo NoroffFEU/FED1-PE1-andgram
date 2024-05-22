@@ -1,6 +1,8 @@
 import { getPostIdFromUrl, deleteBlogPost } from '../blogPosts/index.js';
 import { checkAuth } from '../auth/index.js';
 
+console.log('UI running');
+
 // Function to update UI based on authentication
 function updateUI() {
     const header = document.getElementById('header');
@@ -123,12 +125,16 @@ function updateUI() {
     }
 
     // fucntion to display popup when submiting newsletter form
-    document.getElementById('newsLetterForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      showPopup('Thank you for subscribing!');
-      this.reset();
-    });
+    const newsLetterForm = document.getElementById('newsLetterForm');
+    if (newsLetterForm) {
+      newsLetterForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        showPopup('Thank you for subscribing!');
+        this.reset();
+    })
+  };
+    
 
     // Ensure popup logic runs when page loads
   function checkAllStatuses() {
