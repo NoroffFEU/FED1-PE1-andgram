@@ -578,7 +578,7 @@
     }
 
     /* ====================
-     Post page
+     Blog Post page
      ==================== */
 
      .edit-buttons {
@@ -589,6 +589,12 @@
 
      .post-container h1 {
       margin-bottom: 0.8em;
+     }
+
+     .post-container h2 {
+      text-transform: none;
+      margin-bottom: 0;
+      font-size: var(--fs-500);
      }
     
      .post-container img {

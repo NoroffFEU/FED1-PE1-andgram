@@ -51,15 +51,22 @@ function populateCards(posts) {
             const imageUrl = post.media.url;
             const postId = post.id;
 
-            // Split body text into an array of sentences
-            const sentences = body.split(/[.!?]/);
+            // Create a temporary DOM element to parse the HTML content
+            const tempElement = document.createElement('div');
+            tempElement.innerHTML = body;
+
+            // Extract the text content, which strips out any HTML tags
+            const plainText = tempElement.textContent || tempElement.innerText || '';
+
+            // Split plain text into an array of sentences
+            const sentences = plainText.split(/[.!?]/);
 
             // Extract the first sentence
             const firstSentence = sentences[0].trim();
 
             // Populate title element with the title
             titleElement.textContent = title || 'Title Not Available';
-            contentElement.textContent = firstSentence || 'Content Not Available';
+            contentElement.textContent = firstSentence + '.' || 'Content Not Available';
 
             // Set background image URL
             imageContainer.style.backgroundImage = `url('${imageUrl}')`;
