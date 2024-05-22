@@ -14,12 +14,12 @@ function updateUI() {
         editModeBanner.style.display = 'block';
 
         // Remove 'login' and 'register' menu items if they exist
-        const loginItem = document.getElementById('login');
+        const loginItem = document.querySelectorAll('.login');
 
         if (loginItem) {
             loginItem.parentElement.remove();
         }
-        const registerItem = document.getElementById('register')
+        const registerItem = document.querySelectorAll('.register')
         if (registerItem) {
             registerItem.parentElement.remove();
         }
@@ -30,7 +30,6 @@ function updateUI() {
 
         // Append new menu items to nav
         menu.innerHTML += extraMenuItem;
-        footerMenu.innerHTML += extraMenuItem;
 
         // add edit button and delete button, if button containers exist
         const editButtonContainer = document.getElementById('editButtonContainer');
