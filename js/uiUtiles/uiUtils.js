@@ -29,31 +29,8 @@ function updateUI() {
 
       const footerMenu = document.getElementById('footerMenu');
       if (footerMenu) {
-        footerMenu.style.justifyContent = 'flex-end';
+        footerMenu.style.justifyContent = 'space-around';
       }
-
-      function applyNonMediaQueryStyles() {
-        const mediaQuery = window.matchMedia('(max-width: 50em)');
-        const footerMenu = document.getElementById('footerMenu');
-      
-        if (footerMenu) {
-          if (!mediaQuery.matches) {
-            // Apply styles when the media query is NOT matched
-            footerMenu.style.justifyContent = 'flex-end';
-            footerMenu.style.marginTop = '1em';
-          } else {
-            // Reset styles when the media query is matched
-            footerMenu.style.justifyContent = '';
-            footerMenu.style.marginTop = '';
-          }
-        }
-      }
-  
-      // Initial check
-      applyNonMediaQueryStyles();
-  
-      // Add event listener for changes
-      window.matchMedia('(max-width: 50em)').addListener(applyNonMediaQueryStyles);
 
         // Add extra menu options
         const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/account/create-post.html">Create post</a></li>' +
