@@ -45,7 +45,7 @@ function updateUI() {
 
             deleteButton.addEventListener('click', function() {
                 deleteBlogPost(postId, function() {
-                    window.location.href = '../index.html';
+                    window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
                 });
             });
             editButton.addEventListener('click', function() {

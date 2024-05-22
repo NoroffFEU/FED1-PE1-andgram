@@ -60,7 +60,7 @@ function registerUser() {
                 
 
                 // Redirect user to login page
-                window.location.href = 'login.html';
+                window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/account/login.html';
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -121,7 +121,7 @@ async function handleLogin(email, password) {
       localStorage.setItem('apiKey', apiKey);
       localStorage.setItem('loginSuccess', 'true');
   
-      window.location.href = '../index.html';
+      window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
   
     } catch (error) {
       console.error('Error:', error.message);
@@ -149,7 +149,7 @@ function handleLogout() {
     localStorage.removeItem('apiKey');
     localStorage.setItem('logoutSuccess', 'true');
 
-    window.location.href = '../index.html';
+    window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
 }
 
 // Add event listener to the logout button

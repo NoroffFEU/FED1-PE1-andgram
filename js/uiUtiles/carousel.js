@@ -73,7 +73,7 @@ function populateCards(posts) {
 
             card.addEventListener('click', () => {
                 // Navigate to the full blog post
-                window.location.href = `/post/index.html?id=${postId}`;
+                window.location.href = `https://norofffeu.github.io/FED1-PE1-andgram/post/index.html?id=${postId}`;
             });
         }
     });

@@ -24,7 +24,7 @@ import {
 document.addEventListener('DOMContentLoaded', () => {
     const pageId = document.body.id;
     if ((pageId === 'editPostPage' || pageId === 'createPostPage') && !checkAuth()) {
-        window.location.href = '../account/login.html';
+        window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/account/login.html';
         return;
     }
 

@@ -165,7 +165,7 @@ async function deleteBlogPost(postId) {
         // Handle successful response 
         localStorage.setItem('deletePostSuccess', 'true');
         // Redirect to index.html after successful deletion
-        window.location.href = '../index.html';
+        window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
         
     } catch (error) {
         console.error('Error:', error.message);
@@ -209,7 +209,7 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
         const newPostId = responseData.data.id;
 
         // Constructing the URL with the id parameter
-        const newPostUrl = `../post/index.html?id=${newPostId}`;
+        const newPostUrl = `https://norofffeu.github.io/FED1-PE1-andgram/index.html?id=${newPostId}`;
 
         // Redirecting to the new post's URL
         window.location.href = newPostUrl;
