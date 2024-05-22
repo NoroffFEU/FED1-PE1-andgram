@@ -14,6 +14,22 @@ Hero section
   margin-bottom: 1rem;
 }
 
+@media (min-width: 60em) {
+  .hero-section {
+    animation: zoomIn 5s ease forwards;
+    background-position: center;
+  }
+}
+
+@keyframes zoomIn{
+  0% {
+      background-size: 130%;
+  }
+  100% {
+      background-size: 110%;
+  }
+}
+
 /* ====================
 Blog grid section
 ==================== */
