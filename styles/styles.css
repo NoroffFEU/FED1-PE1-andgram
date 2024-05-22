@@ -457,7 +457,7 @@
      Hero section
      ==================== */
      .hero-section {
-      background-image: url(/images/hero-bg.jpg);
+      background-image: url(../images/hero-bg.jpg);
       color: #fff;
       text-align: center;
      }
