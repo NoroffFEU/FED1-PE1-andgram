@@ -14,14 +14,24 @@ function updateUI() {
         editModeBanner.style.display = 'block';
 
         // Remove 'login' and 'register' menu items if they exist
-        const loginItem = document.querySelectorAll('.login');
-        if (loginItem) {
-            loginItem.parentElement.remove();
-        }
-        const registerItem = document.querySelectorAll('.register')
-        if (registerItem) {
+        const loginItems = document.querySelectorAll('.login');
+        loginItems.forEach(loginItem => {
+          if (loginItem.parentElement) {
+              loginItem.parentElement.remove();
+          }
+      });
+        const registerItems = document.querySelectorAll('.register')
+        registerItems.forEach(registerItem => {
+          if (registerItem.parentElement) {
             registerItem.parentElement.remove();
-        }
+          }
+      });
+
+      const footerMenu = document.getElementById('footerMenu');
+      footerMenu.style.justifyContent = 'flex-end';
+
+
+
 
         // Add extra menu options
         const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/account/create-post.html">Create post</a></li>' +
