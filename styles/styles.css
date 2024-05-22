@@ -494,6 +494,10 @@ header button {
   align-items: center;
 }
 
+.blog-grid-head-container label{
+  font-weight: 500;
+}
+
 #searchField {
   margin-bottom: 2em;
   margin-top: 1em;
