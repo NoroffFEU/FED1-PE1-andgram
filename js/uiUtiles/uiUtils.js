@@ -15,7 +15,6 @@ function updateUI() {
 
         // Remove 'login' and 'register' menu items if they exist
         const loginItem = document.querySelectorAll('.login');
-
         if (loginItem) {
             loginItem.parentElement.remove();
         }
