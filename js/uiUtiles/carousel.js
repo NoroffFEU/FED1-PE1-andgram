@@ -32,9 +32,6 @@ async function fetchLatestThreePosts() {
     }
 }
 
-// Example usage: Fetch and log the latest three posts
-fetchLatestThreePosts().then(posts => console.log(posts));
-
 
 function populateCards(posts) {
     posts.forEach((post, index) => {

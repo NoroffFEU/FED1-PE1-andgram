@@ -442,6 +442,7 @@
       background-image: url(../images/hero-bg.jpg);
       color: #fff;
       text-align: center;
+      background-size: cover;
      }
 
      .hero-heading {

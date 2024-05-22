@@ -75,7 +75,6 @@ async function displayBlogPostDetails() {
 
     try {
         //Show loading spinner
-        console.log('show loading spinner');
         loadingElement.classList.remove('hidden');
         postContainer.classList.add('hidden');
 
@@ -98,8 +97,6 @@ async function displayBlogPostDetails() {
         }
 
         const { data } = await response.json();
-
-        console.log('Data retrieved successfully:', data);
 
         // Check if postContainer exists before proceeding
         if (!postContainer) {
@@ -214,7 +211,6 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
 
         // Handle successful response
         const responseData = await response.json();
-        console.log('Response data:', responseData);
 
         // Accessing the id from the data object
         const newPostId = responseData.data.id;

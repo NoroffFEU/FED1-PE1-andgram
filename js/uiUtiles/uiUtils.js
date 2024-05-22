@@ -108,7 +108,6 @@ function updateUI() {
      // Function to check new post creation status
      function checkNewPostStatus() {
       if (localStorage.getItem('newPostSuccess') === 'true') {
-        console.log("New post creation was successful");
         localStorage.removeItem('newPostSuccess');
         showPopup('New post created successfully!');
       }
@@ -116,7 +115,6 @@ function updateUI() {
     // Function to check new post creation status
     function checkDeleteStatus() {
       if (localStorage.getItem('deletePostSuccess') === 'true') {
-        console.log("Post was deleted successfully");
         localStorage.removeItem('deletePostSuccess');
         showPopup('Post was deleted successfully!');
       }
