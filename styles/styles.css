@@ -421,7 +421,7 @@
     
       .mobile-nav-toggle {
         position: absolute;
-        background: url(/images/burger-menu.svg);
+        background: url(../images/burger-menu.svg);
         background-repeat: no-repeat;
         width: 2rem;
         border: 0;
