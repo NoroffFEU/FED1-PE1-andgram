@@ -8,7 +8,6 @@ function getAuthorizationHeaders() {
     if (!accessToken || !apiKey) {
       throw new Error('Access token or API key not found');
     }
-  
     // Construct headers with access token and API key
     const headers = {
       'Content-Type': 'application/json',  
@@ -25,7 +24,6 @@ function registerUser() {
         // Add event listener to the register form
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
-
             // Get form field values
             const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
@@ -58,7 +56,6 @@ function registerUser() {
                 // Store the access token in localStorage
                 localStorage.setItem('accessToken', data.accessToken);
                 
-
                 // Redirect user to login page
                 window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/account/login.html';
             })
@@ -73,7 +70,6 @@ function registerUser() {
 function checkAuth() {
     const accessToken = localStorage.getItem('accessToken');
     const apiKey = localStorage.getItem('apiKey');
-
     // If both tokens are present, return true (user is authenticated)
     return accessToken && apiKey;
 }
@@ -89,14 +85,12 @@ async function handleLogin(email, password) {
         },
         body: JSON.stringify({ email, password })
       });
-  
       if (!response.ok) {
         throw new Error('Failed to login');
       }
       // Extract access token from response
       const { data } = await response.json();
       const accessToken = data.accessToken;
-  
       // Create API key using access token
       const apiKeyResponse = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
         method: 'POST',
@@ -142,13 +136,11 @@ async function handleLogin(email, password) {
     });
   }
   
-
 // function to logout 
 function handleLogout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('apiKey');
     localStorage.setItem('logoutSuccess', 'true');
-
     window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
 }
 

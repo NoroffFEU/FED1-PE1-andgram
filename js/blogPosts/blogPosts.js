@@ -11,10 +11,9 @@
             throw new Error('Failed to fetch blog posts');
         }
         const { data } = await response.json();
-
         // Get the container to display blog posts inside
         const postContainer = document.getElementById('posts-container');
-        // Clear previous content in the container
+        // Clear previous content in container
         postContainer.innerHTML = '';
 
         // Loop through each blog post and create HTML elements to display them
@@ -56,18 +55,15 @@
         console.error('Error fetching and displaying blog posts:', error);
     }
 } 
-
 // Function to extract ID from URL parameters
 function getPostIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
 }
-
 // Function to replace newline characters with <br> tags
 function convertNewlinesToBreaks(text) {
     return text.replace(/\n/g, '<br>');
 }
-
 // Function to display blog post details
 async function displayBlogPostDetails() {
     const loadingElement = document.getElementById('loading');
@@ -84,14 +80,12 @@ async function displayBlogPostDetails() {
         if (!postId) {
             throw new Error('Post ID not found in URL');
         }
-
         // Fetch blog post details from API using post ID
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-
         if (!response.ok) {
             throw new Error('Failed to fetch blog post details');
         }
@@ -101,9 +95,8 @@ async function displayBlogPostDetails() {
         // Check if postContainer exists before proceeding
         if (!postContainer) {
             console.error('Post container not found');
-            return; // Exit the function if postContainer doesn't exist
+            return; // Exit function if postContainer doesn't exist
         }
-
         postContainer.innerHTML = '';
 
         const titleElement = document.createElement('h1');
@@ -159,20 +152,16 @@ async function deleteBlogPost(postId) {
     try {
         // Get headers
         const headers = getAuthorizationHeaders();
-
         // Make a delete request
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             method: 'DELETE',
             headers: headers
         });
-
         if (!response.ok) {
             throw new Error('Failed to delete blog post');
         }
-
         // Handle successful response 
         localStorage.setItem('deletePostSuccess', 'true');
-        // Redirect to index.html after successful deletion
         window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/index.html';
         
     } catch (error) {
@@ -180,13 +169,11 @@ async function deleteBlogPost(postId) {
         return false;
     } 
 }
-
 // function to create blog post
 async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
     try {
         // Get headers
         const headers = getAuthorizationHeaders();
-
         // Construct request body for creating blog post
         const requestBody = {
             title: title,
@@ -197,18 +184,15 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
                 alt: mediaAlt
             }
         };
-
         // Make a POST request to create blog post
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(requestBody)
         });
-
         if (!response.ok) {
             throw new Error('Failed to create blog post');
         }
-
         // Handle successful response
         const responseData = await response.json();
 
@@ -218,21 +202,18 @@ async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
         // Constructing the URL with the id parameter
         const newPostUrl = `https://norofffeu.github.io/FED1-PE1-andgram/index.html?id=${newPostId}`;
 
-        // Redirecting to the new post's URL
+        // Redirecting to new post's URL
         window.location.href = newPostUrl;
-
         localStorage.setItem('newPostSuccess', 'true');
 
     } catch (error) {
         console.error('Error:', error.message);
-        // Handle errors appropriately
     }
 }
 
 // Function to handle form submission to create post
 function handleCreatePostFormSubmit(event) {
     event.preventDefault();
-
     // Get form values
     const title = document.getElementById('title').value;
     const body = document.getElementById('body').value;
@@ -243,7 +224,6 @@ function handleCreatePostFormSubmit(event) {
     // Call createBlogPost function with form values
     createBlogPost(title, body, tags, mediaUrl, mediaAlt);
 }
-
 
 // Function for editing blog post
 async function fetchAndDisplayBlogPost() {
@@ -257,7 +237,6 @@ async function fetchAndDisplayBlogPost() {
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             headers: headers
         });
-
         if (!response.ok) {
             throw new Error('Failed to fetch blog post details');
         }
@@ -287,7 +266,6 @@ async function handleEditForm(event) {
         } else {
             tags = [];
         }
-
         const jsonData = {
             title: formData.get('title'),
             body: formData.get('content'),
@@ -297,24 +275,20 @@ async function handleEditForm(event) {
                 alt: formData.get('imageAlt')
             }
         };
-
         const jsonPayload = JSON.stringify(jsonData);
 
         const headers = getAuthorizationHeaders();
-        headers['Content-Type'] = 'application/json';  // Ensure Content-Type header is set
-
+        headers['Content-Type'] = 'application/json';
         const response = await fetch(`https://v2.api.noroff.dev/blog/posts/andgram/${postId}`, {
             method: 'PUT',
             headers: headers,
             body: jsonPayload
         });
-
         if (!response.ok) {
             throw new Error('Failed to update blog post');
         }
-
+        // Handle success response
         localStorage.setItem('updateSuccess', 'true');
-
         const currentUrl = window.location.href;
         const editUrl = currentUrl.replace('edit.html', 'index.html');
         window.location.href = editUrl;
@@ -324,14 +298,12 @@ async function handleEditForm(event) {
     }
 }
 
-
 function populateEditForm(postData) {
     document.getElementById('title').value = postData.title;
     document.getElementById('content').value = postData.body;
     document.getElementById('tags').value = postData.tags.join(', ');
     document.getElementById('imageUrl').value = postData.media.url;
 }
-
 
 export {
     displayAllBlogPosts,

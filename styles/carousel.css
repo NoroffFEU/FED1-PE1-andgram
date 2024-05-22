@@ -3,189 +3,188 @@
      ==================== */
 
 .featured-section h2 {
-        color: #fff;
-        text-align: center;
-       }
+    color: #fff;
+    text-align: center;
+}
 
-       .slide-container {
-          position: relative;
-          max-width: 900px;
-          height: 375px;
-          box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
-          margin: 0 auto;
-          cursor: pointer;
-      }
-      
-      .slide-container .slides {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          overflow: hidden;
-      }
-      
-      .slide-container .slides .card {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          background-size: cover;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #fff;
-      }
+.slide-container {
+    position: relative;
+    max-width: 900px;
+    height: 375px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    cursor: pointer;
+}
 
-      .card > div:first-child {
-        padding: 2em;
-      }
-      
-      .card .image-container {
-        position: relative;
-        width: 375px;
-        height: 375px; 
-        background-size: cover;
-        background-position: center; 
+.slide-container .slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-container .slides .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.card>div:first-child {
+    padding: 2em;
+}
+
+.card .image-container {
+    position: relative;
+    width: 375px;
+    height: 375px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card:not(.active) {
+    top: 0;
+    left: -100%;
+}
+
+span.next,
+span.prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 14px;
+    color: #eee;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.5s;
+    border-radius: 3px;
+    user-select: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+span.next {
+    right: -50px;
+}
+
+span.prev {
+    left: -50px;
+}
+
+span.next:hover,
+span.prev:hover {
+    background-color: #ede6d6;
+    opacity: 0.8;
+    color: #222;
+}
+
+.dotsContainer {
+    position: absolute;
+    bottom: 5px;
+    z-index: 3;
+    left: 50%;
+    bottom: -35px;
+    transform: translateX(-50%);
+}
+
+.dotsContainer .dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 2px;
+    border: 3px solid #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dotsContainer .active {
+    background-color: #868686;
+}
+
+.card div {
+    width: 55%;
+}
+
+@media (max-width: 50em) {
+
+    .slide-container {
+        min-width: 400px;
+        height: 600px;
+        margin-bottom: 2em;
     }
 
-       .card:not(.active) {
-          top: 0;
-          left: -100%;
-      }
-      
-      
-      span.next, span.prev {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 14px;
-          color: #eee;
-          font-size: 24px;
-          font-weight: bold;
-          transition: 0.5s;
-          border-radius: 3px;
-          user-select: none;
-          cursor: pointer;
-          z-index: 1;
-      }
-      
-      span.next {
-          right: -50px;
-      }
-      
-      span.prev {
-          left: -50px;
-      }
-      
-      span.next:hover, span.prev:hover {
-          background-color: #ede6d6;
-          opacity: 0.8;
-          color: #222;
-      }
-      
-      .dotsContainer {
-          position: absolute;
-          bottom: 5px;
-          z-index: 3;
-          left: 50%;
-          bottom: -35px;
-          transform: translateX(-50%);
-      }
-      
-      .dotsContainer .dot {
-          width: 15px;
-          height: 15px;
-          margin: 0 2px;
-          border: 3px solid #bbb;
-          border-radius: 50%;
-          display: inline-block;
-          transition: background-color 0.6s ease;
-      }
-      
-      .dotsContainer .active {
-          background-color: #868686;
-      }
-      
-      .card div {
-          width: 55%;
-      }
+    .slide-container .slides .card {
+        width: 100%;
+        height: 100%;
+        flex-direction: column-reverse;
+    }
 
-      @media (max-width: 50em) {
-      
-          .slide-container {
-              min-width: 400px;
-              height: 600px;
-              margin-bottom: 2em;
-          }
-      
-          .slide-container .slides .card {
-              width: 100%;
-              height: 100%;
-              flex-direction: column-reverse;
-          }
-      
-          .card > div:first-child {
-              width: 100%;
-              padding: 0 1.4em 3em;
-          }
+    .card>div:first-child {
+        width: 100%;
+        padding: 0 1.4em 3em;
+    }
 
-          .card .image-container {
-            width: 100%; 
-            height: 320px;
-        }
+    .card .image-container {
+        width: 100%;
+        height: 320px;
+    }
 
-        span.next {
-            right: 60px;
-            top: 650px;
-        }
-        
-        span.prev {
-            left: 60px;
-            top: 650px;
-        }
+    span.next {
+        right: 60px;
+        top: 650px;
+    }
 
-        .dotsContainer {
-            bottom: -65px;
-        }
-      
-      }
+    span.prev {
+        left: 60px;
+        top: 650px;
+    }
 
-      @keyframes next1 {
-          from {
-              left: 0%;
-          }
-          to {
-             left: -100%; 
-          }
-      }
-      
-      @keyframes next2 {
-          from {
-              left: 100%;
-          }
-          to {
-             left: 0%; 
-          }
-      }
-      
-      @keyframes prev1 {
-          from {
-              left: 0%;
-          }
-          to {
-             left: 100%; 
-          }
-      }
-      
-      @keyframes prev2 {
-          from {
-              left: -100%;
-          }
-          to {
-             left: 0%; 
-          }
-      }
-      
+    .dotsContainer {
+        bottom: -65px;
+    }
 
+}
 
+@keyframes next1 {
+    from {
+        left: 0%;
+    }
 
+    to {
+        left: -100%;
+    }
+}
 
+@keyframes next2 {
+    from {
+        left: 100%;
+    }
 
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes prev1 {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes prev2 {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 0%;
+    }
+}

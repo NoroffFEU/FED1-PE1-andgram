@@ -26,12 +26,11 @@ function updateUI() {
             registerItem.parentElement.remove();
           }
       });
-
+      // Add styling to footer when menu links are removed
       const footerMenu = document.getElementById('footerMenu');
       if (footerMenu) {
         footerMenu.style.justifyContent = 'space-around';
       }
-
         // Add extra menu options
         const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/account/create-post.html">Create post</a></li>' +
                               '<li><button id="logoutButton">Logout</button></li>';
@@ -69,7 +68,6 @@ function updateUI() {
         header.style.backgroundColor = '#000'; // Reset header color
     }
 }
-  
     // General function to show a popup with a custom message
     function showPopup(message) {
       const popup = document.getElementById('successPopup');
@@ -81,7 +79,6 @@ function updateUI() {
         }, 3000);
       } 
     }
-  
     // Function to check the update status
     function checkUpdateStatus() {
       if (localStorage.getItem('updateSuccess') === 'true') {
@@ -89,7 +86,6 @@ function updateUI() {
         showPopup('Blog post updated successfully!');
       }
     }
-  
     // Function to check login status
     function checkLoginStatus() {
       if (localStorage.getItem('loginSuccess') === 'true') {
@@ -97,7 +93,6 @@ function updateUI() {
         showPopup('Login successful!');
       }
     }
-  
     // Function to check logout status
     function checkLogoutStatus() {
       if (localStorage.getItem('logoutSuccess') === 'true') {
@@ -119,7 +114,6 @@ function updateUI() {
         showPopup('Post was deleted successfully!');
       }
     }
-
     // Function to check new registration status
     function checkRegisterStatus() {
       if (localStorage.getItem('registerSuccess') === 'true') {
@@ -139,8 +133,6 @@ function updateUI() {
         this.reset();
     })
   };
-    
-
     // Ensure popup logic runs when page loads
   function checkAllStatuses() {
     checkUpdateStatus();

@@ -6,11 +6,9 @@ async function fetchAllPosts() {
     }
     const responseData = await response.json();
     
-    // Check if the response data contains the 'data' property
     if (!responseData.hasOwnProperty('data') || !Array.isArray(responseData.data)) {
         throw new Error('Invalid data format: expected an array under "data" property');
     }
-    
     return responseData.data;
 }
 
@@ -18,20 +16,16 @@ async function fetchAllPosts() {
 async function fetchLatestThreePosts() {
     try {
         const allPosts = await fetchAllPosts();
-
         // Sort posts by date in descending order to get the latest posts first
         allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
         // Get the latest three posts
         const latestThreePosts = allPosts.slice(0, 3);
-
         return latestThreePosts;
     } catch (error) {
         console.error(error.message);
         return [];
     }
 }
-
 
 function populateCards(posts) {
     posts.forEach((post, index) => {
@@ -42,26 +36,25 @@ function populateCards(posts) {
             const contentElement = innerContainer.querySelector('p');
             const imageContainer = card.querySelector('.image-container');
 
-            // Access the title, body, and media properties directly from the post object
+            // Access title, body, and media properties from post object
             const title = post.title;
             const body = post.body;
             const imageUrl = post.media.url;
             const postId = post.id;
 
-            // Create a temporary DOM element to parse the HTML content
+            // Create a temporary DOM element to parse HTML content
             const tempElement = document.createElement('div');
             tempElement.innerHTML = body;
-
-            // Extract the text content, which strips out any HTML tags
+            // Extract the text content, which strips out HTML tags
             const plainText = tempElement.textContent || tempElement.innerText || '';
 
             // Split plain text into an array of sentences
             const sentences = plainText.split(/[.!?]/);
 
-            // Extract the first sentence
+            // Extract first sentence
             const firstSentence = sentences[0].trim();
 
-            // Populate title element with the title
+            // Populate title element with title
             titleElement.textContent = title || 'Title Not Available';
             contentElement.textContent = firstSentence + '.' || 'Content Not Available';
 
@@ -69,14 +62,12 @@ function populateCards(posts) {
             imageContainer.style.backgroundImage = `url('${imageUrl}')`;
 
             card.addEventListener('click', () => {
-                // Navigate to the full blog post
+                // Navigate to full blog post
                 window.location.href = `https://norofffeu.github.io/FED1-PE1-andgram/post/index.html?id=${postId}`;
             });
         }
     });
 }
-
-
 document.addEventListener('DOMContentLoaded', () => {
     fetchLatestThreePosts()
         .then(posts => {
@@ -86,14 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching posts:', error);
         });
 });
-
 // access the card
 let slideCards = document.querySelectorAll('.card');
 // access next and prev buttons
 let next = document.querySelector('.next');
 let prev = document.querySelector('.prev');
 
-// access the indicators
+// access indicators
 let dots = document.querySelectorAll('.dot');
 
 let counter = 0;
@@ -110,7 +100,6 @@ function slideNext(){
     slideCards[counter].style.animation = 'next2 0.5s ease forwards';
     indicators();
 }
-
 // code for prev button
 prev.addEventListener('click', slidePrev);
 function slidePrev(){
@@ -139,10 +128,8 @@ const container = document.querySelector('.slide-container');
 container.addEventListener('mouseover', function() {
     clearInterval(deleteInterval);
 })
-
 // resume autosliding when mouse is out
 container.addEventListener('mouseout', autoSliding);
-
 
 // add and remove active class from the indicator
 function indicators () {
