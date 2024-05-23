@@ -32,7 +32,7 @@ function updateUI() {
         footerMenu.style.justifyContent = 'space-around';
       }
         // Add extra menu options
-        const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/account/create-post.html">Create post</a></li>' +
+        const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/post/create-post.html">Create post</a></li>' +
                               '<li><button id="logoutButton">Logout</button></li>';
 
         // Append new menu items to nav
