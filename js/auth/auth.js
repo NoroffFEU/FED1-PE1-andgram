@@ -25,13 +25,13 @@ function registerUser() {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
             // Get form field values
-            const username = document.getElementById('username').value;
+            const name = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             // Create request body
             const requestBody = {
-                username: username,
+                name: name,
                 email: email,
                 password: password
             };
