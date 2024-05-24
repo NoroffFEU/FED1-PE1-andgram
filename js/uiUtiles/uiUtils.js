@@ -117,7 +117,6 @@ function updateUI() {
     // Function to check new registration status
     function checkRegisterStatus() {
       if (localStorage.getItem('registerSuccess') === 'true') {
-        console.log("User successfully registered");
         localStorage.removeItem('registerSuccess');
         showPopup('User successfully registered!');
       }
