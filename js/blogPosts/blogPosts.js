@@ -170,20 +170,22 @@ async function deleteBlogPost(postId) {
     } 
 }
 // function to create blog post
-async function createBlogPost(title, body = '', tags = '', mediaUrl = '', mediaAlt = '') {
+async function createBlogPost(title, body, tags = '', mediaUrl, mediaAlt = '') {
     try {
         // Get headers
         const headers = getAuthorizationHeaders();
-        // Construct request body for creating blog post
-        const requestBody = {
-            title: title, // Only title required for creating a post
-            body: body || '',
-            tags: tags ? tags.split(',') : [],
+
+         // Construct request body for creating blog post
+         const requestBody = {
+            title: title,
+            body: body,
+            tags: tags ? tags.split(',').map(tag => tag.trim()).filter(tag => tag) : [],
             media: {
-                url: mediaUrl || '',
-                alt: mediaAlt || ''
+                url: mediaUrl,
+                alt: mediaAlt
             }
         };
+
         // Make a POST request to create blog post
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram', {
             method: 'POST',
