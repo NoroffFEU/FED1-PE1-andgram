@@ -112,7 +112,7 @@ span.prev:hover {
 @media (max-width: 50em) {
 
     .slide-container {
-        min-width: 400px;
+        min-width: 300px;
         height: 600px;
         margin-bottom: 2em;
     }
