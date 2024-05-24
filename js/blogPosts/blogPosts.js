@@ -170,18 +170,18 @@ async function deleteBlogPost(postId) {
     } 
 }
 // function to create blog post
-async function createBlogPost(title, body, tags, mediaUrl, mediaAlt) {
+async function createBlogPost(title, body = '', tags = '', mediaUrl = '', mediaAlt = '') {
     try {
         // Get headers
         const headers = getAuthorizationHeaders();
         // Construct request body for creating blog post
         const requestBody = {
-            title: title,
-            body: body,
-            tags: tags.split(','), // Convert comma-separated string to array of strings
+            title: title, // Only title required for creating a post
+            body: body || '',
+            tags: tags ? tags.split(',') : [],
             media: {
-                url: mediaUrl,
-                alt: mediaAlt
+                url: mediaUrl || '',
+                alt: mediaAlt || ''
             }
         };
         // Make a POST request to create blog post
