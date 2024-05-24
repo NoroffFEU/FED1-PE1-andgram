@@ -197,12 +197,13 @@ async function createBlogPost(title, body, tags = '', mediaUrl, mediaAlt = '') {
         }
         // Handle successful response
         const responseData = await response.json();
+        console.log(responseData);
 
         // Accessing the id from the data object
         const newPostId = responseData.data.id;
 
         // Constructing the URL with the id parameter
-        const newPostUrl = `https://norofffeu.github.io/FED1-PE1-andgram/index.html?id=${newPostId}`;
+        const newPostUrl = `https://norofffeu.github.io/FED1-PE1-andgram/post/index.html?id=${newPostId}`;
 
         // Redirecting to new post's URL
         window.location.href = newPostUrl;
