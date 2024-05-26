@@ -1,7 +1,7 @@
-import { checkAllStatuses, updateUI } from './uiUtils.js';
+import { checkAllStatuses, updateUI, addHoverEffectToImageContainers } from './uiUtils.js';
 import { setupNavToggle } from './nav.js';
 
 
 export {
-    checkAllStatuses, updateUI, setupNavToggle
+    checkAllStatuses, updateUI, setupNavToggle, addHoverEffectToImageContainers
 };

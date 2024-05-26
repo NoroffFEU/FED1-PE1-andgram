@@ -12,7 +12,7 @@ import {
 } from './blogPosts/index.js';
 
 import { 
-    checkAllStatuses, updateUI, setupNavToggle
+    checkAllStatuses, updateUI, setupNavToggle, addHoverEffectToImageContainers
 } from './uiUtiles/index.js';
 
 

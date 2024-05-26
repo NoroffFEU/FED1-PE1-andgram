@@ -46,17 +46,6 @@ Blog grid section
 
 .blog-post-grid .post {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-post-grid .post img {
-  order: -1;
-  transition: 250ms ease;
-}
-
-.blog-post-grid .post img:hover {
-  filter: brightness(80%);
 }
 
 .blog-post-grid .post h3 {
@@ -80,6 +69,40 @@ Blog grid section
 #searchField {
   margin-bottom: 2em;
   margin-top: 1em;
+}
+
+.grid-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; 
+  
+}
+
+.hover-info.visible {
+  opacity: 1;
+}
+
+.grid-image-container img {
+  transition: 300ms ease;
+}
+
+.grid-image-container .hover-info.visible img {
+  transform: scale(1.1);
+  filter: brightness(0.2);
 }
 
 /* ====================

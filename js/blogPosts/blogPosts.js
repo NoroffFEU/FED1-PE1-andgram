@@ -1,5 +1,6 @@
- import { getAuthorizationHeaders } from "../auth/index.js";
- 
+ import { checkAuth, getAuthorizationHeaders } from "../auth/index.js";
+ import { addHoverEffectToImageContainers } from "../uiUtiles/index.js";
+
  // Function to display all blog posts in grid
  async function displayAllBlogPosts() {
     try {
@@ -27,6 +28,7 @@
             const postElement = document.createElement('div');
             postElement.classList.add('post');
 
+            // Create image element
             const imageElement = document.createElement('img');
             if (post.media && post.media.url) {
                 imageElement.src = post.media.url;
@@ -41,15 +43,32 @@
             const titleElement = document.createElement('h3');
             titleElement.textContent = post.title;
 
+            // Create element to display extra info to logged in user
+            const hoverInfoElement = document.createElement('div');
+            hoverInfoElement.className = 'hover-info';
+            hoverInfoElement.textContent = 'View/edit blog post';
+
+            // Create image container
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('grid-image-container');
+
+            // Append elemets to image container
+            imageContainer.appendChild(imageElement);
+            imageContainer.appendChild(hoverInfoElement);
+
             // Append title and image to post element
+            postElement.appendChild(imageContainer);
             postElement.appendChild(titleElement);
-            postElement.appendChild(imageElement);
             
             // Append post element to post link
             postLink.appendChild(postElement);
 
             // Append post link to post container
             postContainer.appendChild(postLink);
+
+            if (checkAuth()) {
+                addHoverEffectToImageContainers();
+            }
         });
     } catch (error) {
         console.error('Error fetching and displaying blog posts:', error);
