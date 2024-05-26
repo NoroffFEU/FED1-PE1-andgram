@@ -144,6 +144,20 @@ function checkAllStatuses() {
   checkRegisterStatus();
 }
 
+// Function to display error messages to the user
+function displayErrorMessage(message) {
+  const errorContainer = document.getElementById('errorContainer');
+  if (errorContainer) {
+      errorContainer.textContent = message;
+      errorContainer.style.display = 'block';
+      setTimeout(() => {
+        errorContainer.style.display = 'none';
+      }, 3000);
+  } else {
+      alert(message);  // Fallback in case there is no error container
+  }
+}
+
 // Function to add hover effect to image container elements for users logged in
 function addHoverEffectToImageContainers() {
   const imageContainers = document.querySelectorAll('.grid-image-container');
@@ -191,7 +205,7 @@ function addRegularHoverEffect() {
   });
 }
 
-export { checkAllStatuses, updateUI, addHoverEffectToImageContainers, addRegularHoverEffect };
+export { checkAllStatuses, updateUI, addHoverEffectToImageContainers, addRegularHoverEffect, displayErrorMessage };
 
 
 
