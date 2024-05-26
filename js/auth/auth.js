@@ -1,13 +1,12 @@
 // Function to get authorization headers
 function getAuthorizationHeaders() {
-    // Get access token and API key from storage
     const accessToken = localStorage.getItem('accessToken');
     const apiKey = localStorage.getItem('apiKey');
   
-    // Check if both access token and API key are available
     if (!accessToken || !apiKey) {
       throw new Error('Access token or API key not found');
     }
+
     // Construct headers with access token and API key
     const headers = {
       'Content-Type': 'application/json',  
@@ -16,6 +15,11 @@ function getAuthorizationHeaders() {
     };
     return headers;
   }
+
+// Function to check if tokens are present in localStorage
+function checkAuth() {
+  return localStorage.getItem('accessToken') && localStorage.getItem('apiKey');
+}
 
 // Function for registering user
 function registerUser() {
@@ -64,14 +68,6 @@ function registerUser() {
             });
         });
     }
-}
-
-// Function to check if tokens are present in localStorage
-function checkAuth() {
-    const accessToken = localStorage.getItem('accessToken');
-    const apiKey = localStorage.getItem('apiKey');
-    // If both tokens are present, return true (user is authenticated)
-    return accessToken && apiKey;
 }
 
 // Function to handle login
