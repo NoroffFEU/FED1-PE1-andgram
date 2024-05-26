@@ -103,14 +103,6 @@
     padding: 4rem 0;
   }
   
-  @media (min-width: 40em) {
-  
-    section,
-    main {
-      padding: 7rem 0;
-    }
-  }
-  
   .container {
     margin-inline: auto;
     width: min(90%, 70.5rem);
@@ -118,6 +110,13 @@
   
   .bg-grey {
     background: linear-gradient(var(--clr-primary-500), var(--clr-primary-600));
+  }
+
+  @media (min-width: 40em) {
+    section,
+    main {
+      padding: 7rem 0;
+    }
   }
   
   /* ====================

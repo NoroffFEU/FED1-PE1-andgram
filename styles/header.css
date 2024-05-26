@@ -96,6 +96,10 @@ header button {
     display: none;
 }
 
+.sr-only {
+    display: none;
+}
+
 @media (max-width: 40em) {
     .primary-navigation {
         gap: 2em;
@@ -143,8 +147,4 @@ header button {
     header nav ul {
         flex-direction: column;
     }
-}
-
-.sr-only {
-    display: none;
 }
