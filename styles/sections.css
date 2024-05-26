@@ -97,12 +97,11 @@ Blog grid section
 }
 
 .grid-image-container img {
-  transition: 300ms ease;
+  transition: 400ms ease;
 }
 
-.grid-image-container .hover-info.visible img {
+.grid-image-container img.hovered {
   transform: scale(1.1);
-  filter: brightness(0.2);
 }
 
 /* ====================

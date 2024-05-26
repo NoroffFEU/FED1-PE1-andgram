@@ -1,5 +1,5 @@
  import { checkAuth, getAuthorizationHeaders } from "../auth/index.js";
- import { addHoverEffectToImageContainers } from "../uiUtiles/index.js";
+ import { addHoverEffectToImageContainers, addRegularHoverEffect } from "../uiUtiles/index.js";
 
  // Function to display all blog posts in grid
  async function displayAllBlogPosts() {
@@ -68,7 +68,10 @@
 
             if (checkAuth()) {
                 addHoverEffectToImageContainers();
+            } else {
+                addRegularHoverEffect();
             }
+
         });
     } catch (error) {
         console.error('Error fetching and displaying blog posts:', error);

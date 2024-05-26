@@ -144,28 +144,54 @@ function checkAllStatuses() {
   checkRegisterStatus();
 }
 
-// Function to add hover effect to image container elements
+// Function to add hover effect to image container elements for users logged in
 function addHoverEffectToImageContainers() {
   const imageContainers = document.querySelectorAll('.grid-image-container');
     imageContainers.forEach(container => {
       const hoverInfo = container.querySelector('.hover-info');
+      const image = container.querySelector('img');
       
       container.addEventListener('mouseenter', () => {
+          event.preventDefault();
           if (hoverInfo) {
               hoverInfo.classList.add('visible');
+              image.classList.add('hovered');
           }
       });
 
       container.addEventListener('mouseleave', () => {
+          event.preventDefault();
           if (hoverInfo) {
               hoverInfo.classList.remove('visible');
+              image.classList.remove('hovered');
           }
       });
     });
 }
 
+// Function to handle hover effect for not-logged-in users
+function addRegularHoverEffect() {
+  const imageContainers = document.querySelectorAll('.grid-image-container');
+  imageContainers.forEach(container => {
+    container.addEventListener('mouseenter', () => {
+      const img = container.querySelector('img');
+      if (img) {
+        img.style.transform = 'scale(1.07)';
+        img.style.filter = 'brightness(1.1)';
+      }
+    });
 
-export { checkAllStatuses, updateUI, addHoverEffectToImageContainers };
+    container.addEventListener('mouseleave', () => {
+      const img = container.querySelector('img');
+      if (img) {
+        img.style.transform = 'scale(1)';
+        img.style.filter = 'brightness(1)';
+      }
+    });
+  });
+}
+
+export { checkAllStatuses, updateUI, addHoverEffectToImageContainers, addRegularHoverEffect };
 
 
 
