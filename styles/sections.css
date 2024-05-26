@@ -236,7 +236,7 @@ Login / register form
 
 .login-container,
 .register-container {
-    padding: 4rem 0;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -247,16 +247,16 @@ Login / register form
 .register-container h1 {
     color: #fff;
     text-transform: uppercase;
-    margin-bottom: 1em;
     text-align: center;
+    margin: 1em;
 }
 
 .form-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2em 4em;
-    min-width: 400px;
+    margin: 1em 2em 4em;
+    min-width: 300px;
     padding: 3em;
     color: #fff;
     border-radius: 5px;
@@ -289,6 +289,6 @@ Login / register form
 
 @media (min-width: 40em) {
     .login-container {
-        padding: 7rem 0;
+        padding: 4rem 0;
     }
 }
