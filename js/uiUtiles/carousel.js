@@ -1,8 +1,5 @@
 import { fetchAllPosts } from '../blogPosts/index.js';
 
-let deleteInterval; // Declare deleteInterval variable
-let i; // Declare i variable
-
 // Function to get the latest three blog posts
 async function fetchLatestThreePosts() {
     try {
@@ -13,7 +10,7 @@ async function fetchLatestThreePosts() {
         const latestThreePosts = allPosts.slice(0, 3);
         return latestThreePosts;
     } catch (error) {
-        console.error(error.message);
+        console.error('Error fetching latest three posts:', error.message);
         return [];
     }
 }
@@ -108,6 +105,7 @@ function slidePrev(){
 }
 
 // Auto sliding
+let deleteInterval;
 function autoSliding() {
     deleteInterval = setInterval(timer, 4000);
     function timer() {
