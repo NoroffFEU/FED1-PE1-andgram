@@ -26,7 +26,7 @@
         postContainer.innerHTML = '';
 
         // Loop through each blog post and create HTML elements to display them
-        data.forEach(post => {
+        postData.forEach(post => {
             // Create anchor element for the post
             const postLink = document.createElement('a');
             postLink.href = `post/index.html?id=${post.id}`;
@@ -79,7 +79,6 @@
             } else {
                 addRegularHoverEffect();
             }
-
         });
     } catch (error) {
         console.error('Error fetching and displaying blog posts:', error);
@@ -94,6 +93,7 @@ function getPostIdFromUrl() {
 function convertNewlinesToBreaks(text) {
     return text.replace(/\n/g, '<br>');
 }
+
 // Function to display blog post details
 async function displayBlogPostDetails() {
     const loadingElement = document.getElementById('loading');
@@ -117,16 +117,21 @@ async function displayBlogPostDetails() {
             }
         });
         if (!response.ok) {
-            throw new Error('Failed to fetch blog post details');
+            throw new Error('Failed to fetch blog post details. Server responded with ' + response.status);
         }
 
         const { data } = await response.json();
 
+        if (!data) {
+            throw new Error('No data received from the server');
+        }
+
         // Check if postContainer exists before proceeding
         if (!postContainer) {
             console.error('Post container not found');
-            return; // Exit function if postContainer doesn't exist
+            return;
         }
+
         postContainer.innerHTML = '';
 
         const titleElement = document.createElement('h1');
@@ -138,7 +143,7 @@ async function displayBlogPostDetails() {
             imageElement.alt = data.media.alt || 'Image';
         } else {
             console.warn('Image URL is missing or invalid:', data.media);
-            imageElement.src = 'images/fallback-img.jpg';
+            imageElement.src = '../images/fallback-img.jpg';
             imageElement.alt = 'Fallback Image';
         }
 
@@ -170,7 +175,9 @@ async function displayBlogPostDetails() {
             populateEditForm(data);
         }
     } catch (error) {
-        console.error('Error fetching and displaying blog post details:', error);
+        console.error('Error fetching and displaying blog post details:', error.message);
+        // Display error message to the user
+        displayErrorMessage(error.message || 'An unknown error occurred. Please try again.');
     } finally {
         // Hide loading spinner and show blog post content
         loadingElement.classList.add('hidden');
@@ -196,6 +203,7 @@ async function deleteBlogPost(postId) {
         
     } catch (error) {
         console.error('Error:', error.message);
+        displayErrorMessage(error.message || 'An unknown error occured. Please try again.');
         return false;
     } 
 }
@@ -265,7 +273,7 @@ function handleCreatePostFormSubmit(event) {
     createBlogPost(title, body, tags, mediaUrl, mediaAlt);
 }
 
-// Function for editing blog post
+// Function for populating edit form with blog post data 
 async function fetchAndDisplayBlogPost() {
     try {
         const postId = getPostIdFromUrl();
@@ -290,6 +298,9 @@ async function fetchAndDisplayBlogPost() {
         document.getElementById('imageAlt').value = data.media.alt;
     } catch (error) {
         console.error('Error fetching and displaying blog post details:', error);
+
+        // Display error message to user
+        displayErrorMessage(error.message + '. Could not edit blog post.' || 'An unknown error occurred. Please try again.');
     }
 }
 
@@ -335,6 +346,9 @@ async function handleEditForm(event) {
 
     } catch (error) {
         console.error('Error handling edit form and displaying blog post details:', error);
+
+        // Display error message to user
+        displayErrorMessage(error.message || 'Could not update blog. Please try again.');
     }
 }
 
