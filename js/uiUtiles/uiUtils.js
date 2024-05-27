@@ -6,10 +6,9 @@ function updateUI() {
   const header = document.getElementById('header');
   const editModeBanner = document.getElementById('editModeBanner');
   const menu = document.querySelector('#primary-navigation ul');
-  const footerMenu = document.querySelector('#footerMenu');
 
+  // If user is authenticated, update UI elements
   if (checkAuth()) {
-    // If user is authenticated, update header and menu
     header.style.backgroundColor = 'var(--clr-primary-600)';
     editModeBanner.style.display = 'block';
 
@@ -123,7 +122,6 @@ function checkRegisterStatus() {
     showPopup('User successfully registered!');
   }
 }
-
 // fucntion to display popup when submiting newsletter form
 const newsLetterForm = document.getElementById('newsLetterForm');
 if (newsLetterForm) {
@@ -134,7 +132,7 @@ if (newsLetterForm) {
     this.reset();
   })
 };
-// Ensure popup logic runs when page loads
+// Construct function that checks all statuses
 function checkAllStatuses() {
   checkUpdateStatus();
   checkLoginStatus();
@@ -148,39 +146,38 @@ function checkAllStatuses() {
 function displayErrorMessage(message) {
   const errorContainer = document.getElementById('errorContainer');
   if (errorContainer) {
-      errorContainer.textContent = message;
-      errorContainer.style.display = 'block';
-      setTimeout(() => {
-        errorContainer.style.display = 'none';
-      }, 3000);
+    errorContainer.textContent = message;
+    errorContainer.style.display = 'block';
+    setTimeout(() => {
+      errorContainer.style.display = 'none';
+    }, 3000);
   } else {
-      alert(message);  // Fallback in case there is no error container
+    alert(message);  // Fallback in case there is no error container
   }
 }
 
-// Function to add hover effect to image container elements for users logged in
+// Add specific hover effect to grid images for logged in users
 function addHoverEffectToImageContainers() {
   const imageContainers = document.querySelectorAll('.grid-image-container');
-    imageContainers.forEach(container => {
-      const hoverInfo = container.querySelector('.hover-info');
-      const image = container.querySelector('img');
-      
-      container.addEventListener('mouseenter', () => {
-          event.preventDefault();
-          if (hoverInfo) {
-              hoverInfo.classList.add('visible');
-              image.classList.add('hovered');
-          }
-      });
+  imageContainers.forEach(container => {
+    const hoverInfo = container.querySelector('.hover-info');
+    const image = container.querySelector('img');
 
-      container.addEventListener('mouseleave', () => {
-          event.preventDefault();
-          if (hoverInfo) {
-              hoverInfo.classList.remove('visible');
-              image.classList.remove('hovered');
-          }
-      });
+    container.addEventListener('mouseenter', () => {
+      if (hoverInfo) {
+        hoverInfo.classList.add('visible');
+        image.classList.add('hovered');
+      }
     });
+
+    container.addEventListener('mouseleave', () => {
+      if (hoverInfo) {
+        hoverInfo.classList.remove('visible');
+        image.classList.remove('hovered');
+      }
+    });
+
+  });
 }
 
 // Function to handle hover effect for not-logged-in users
