@@ -1,16 +1,7 @@
-// Function to fetch all blog posts
-async function fetchAllPosts() {
-    const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram');
-    if (!response.ok) {
-        throw new Error('Failed to fetch posts');
-    }
-    const responseData = await response.json();
-    
-    if (!responseData.hasOwnProperty('data') || !Array.isArray(responseData.data)) {
-        throw new Error('Invalid data format: expected an array under "data" property');
-    }
-    return responseData.data;
-}
+import { fetchAllPosts } from '../blogPosts/index.js';
+
+let deleteInterval; // Declare deleteInterval variable
+let i; // Declare i variable
 
 // Function to get the latest three blog posts
 async function fetchLatestThreePosts() {
@@ -68,6 +59,7 @@ function populateCards(posts) {
         }
     });
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchLatestThreePosts()
         .then(posts => {
@@ -77,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching posts:', error);
         });
 });
+
 // access the card
 let slideCards = document.querySelectorAll('.card');
 // access next and prev buttons
@@ -100,6 +93,7 @@ function slideNext(){
     slideCards[counter].style.animation = 'next2 0.5s ease forwards';
     indicators();
 }
+
 // code for prev button
 prev.addEventListener('click', slidePrev);
 function slidePrev(){
@@ -110,7 +104,7 @@ function slidePrev(){
         counter--;
     }
     slideCards[counter].style.animation = 'prev2 0.5s ease forwards';
-    indicators()
+    indicators();
 }
 
 // Auto sliding
@@ -132,8 +126,8 @@ container.addEventListener('mouseover', function() {
 container.addEventListener('mouseout', autoSliding);
 
 // add and remove active class from the indicator
-function indicators () {
-    for (i = 0; i < dots.length; i++) {
+function indicators() {
+    for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(' active', ''); 
     }
     dots[counter].className +=  ' active';

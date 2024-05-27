@@ -1,24 +1,32 @@
  import { checkAuth, getAuthorizationHeaders } from "../auth/index.js";
  import { addHoverEffectToImageContainers, addRegularHoverEffect, displayErrorMessage } from "../uiUtiles/index.js";
 
- // Function to display all blog posts in grid
- async function displayAllBlogPosts() {
+ async function fetchAllPosts() {
     try {
-        // Fetch all blog posts from API
         const response = await fetch('https://v2.api.noroff.dev/blog/posts/andgram', {
-            headers: {'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         });
         if (!response.ok) {
             throw new Error('Failed to fetch blog posts');
         }
         const { data } = await response.json();
-        // Get the container to display blog posts inside
+        return data;
+    } catch (error) {
+        console.error('Error fetching blog posts:', error);
+        throw error;
+    }
+}
+
+ // Function to display all blog posts in grid
+ async function displayAllBlogPosts() {
+    try {
+        const postData = await fetchAllPosts();
+
         const postContainer = document.getElementById('posts-container');
-        // Clear previous content in container
         postContainer.innerHTML = '';
 
         // Loop through each blog post and create HTML elements to display them
-        data.forEach(post => {
+        postData.forEach(post => {
             // Create anchor element for the post
             const postLink = document.createElement('a');
             postLink.href = `post/index.html?id=${post.id}`;
@@ -344,5 +352,6 @@ export {
     fetchAndDisplayBlogPost,
     handleEditForm,
     getPostIdFromUrl,
-    displayBlogPostDetails
+    displayBlogPostDetails,
+    fetchAllPosts
 };

@@ -5,7 +5,8 @@ import {
     fetchAndDisplayBlogPost,
     handleEditForm,
     getPostIdFromUrl,
-    displayBlogPostDetails
+    displayBlogPostDetails,
+    fetchAllPosts
 } from './blogPosts.js';
 
 export {
@@ -15,5 +16,6 @@ export {
     fetchAndDisplayBlogPost,
     handleEditForm,
     getPostIdFromUrl,
-    displayBlogPostDetails
+    displayBlogPostDetails,
+    fetchAllPosts
 };
