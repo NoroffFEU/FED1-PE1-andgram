@@ -26,11 +26,6 @@ function updateUI() {
       }
     });
 
-    // Add styling to footer when menu links are removed
-    const footerMenu = document.getElementById('footerMenu');
-    if (footerMenu) {
-      footerMenu.style.justifyContent = 'space-around';
-    }
     // Add extra menu options
     const extraMenuItem = '<li><a href="https://norofffeu.github.io/FED1-PE1-andgram/post/create-post.html">Create post</a></li>' +
       '<li><button id="logoutButton">Logout</button></li>';
