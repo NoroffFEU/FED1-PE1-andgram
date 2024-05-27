@@ -26,7 +26,7 @@
         postContainer.innerHTML = '';
 
         // Loop through each blog post and create HTML elements to display them
-        postData.forEach(post => {
+        data.forEach(post => {
             // Create anchor element for the post
             const postLink = document.createElement('a');
             postLink.href = `post/index.html?id=${post.id}`;

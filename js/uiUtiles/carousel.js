@@ -2,7 +2,14 @@ import { fetchAllPosts } from '../blogPosts/index.js';
 
 // Function to get the latest three blog posts
 async function fetchLatestThreePosts() {
+    const loadingElement = document.getElementById('loading');
+    const slideWrapper = document.getElementById('slideWrapper');
+
     try {
+        //Show loading spinner
+        loadingElement.classList.remove('hidden');
+        slideWrapper.classList.add('hidden');
+
         const allPosts = await fetchAllPosts();
         // Sort posts by date in descending order to get the latest posts first
         allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -12,6 +19,10 @@ async function fetchLatestThreePosts() {
     } catch (error) {
         console.error('Error fetching latest three posts:', error.message);
         return [];
+    } finally {
+        // Hide loading spinner and show blog post content
+        loadingElement.classList.add('hidden');
+        slideWrapper.classList.remove('hidden');
     }
 }
 
