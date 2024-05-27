@@ -1,5 +1,5 @@
  import { checkAuth, getAuthorizationHeaders } from "../auth/index.js";
- import { addHoverEffectToImageContainers, addRegularHoverEffect } from "../uiUtiles/index.js";
+ import { addHoverEffectToImageContainers, addRegularHoverEffect, displayErrorMessage } from "../uiUtiles/index.js";
 
  // Function to display all blog posts in grid
  async function displayAllBlogPosts() {
@@ -194,6 +194,11 @@ async function deleteBlogPost(postId) {
 // function to create blog post
 async function createBlogPost(title, body, tags = '', mediaUrl, mediaAlt = '') {
     try {
+         // Validate input fields
+         if (!title || !body || !mediaUrl) {
+            throw new Error('Title, body and media URL are required.');
+        }
+
         // Get headers
         const headers = getAuthorizationHeaders();
 
@@ -215,7 +220,8 @@ async function createBlogPost(title, body, tags = '', mediaUrl, mediaAlt = '') {
             body: JSON.stringify(requestBody)
         });
         if (!response.ok) {
-            throw new Error('Failed to create blog post');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to create blog post');
         }
         // Handle successful response
         const responseData = await response.json();
@@ -232,6 +238,8 @@ async function createBlogPost(title, body, tags = '', mediaUrl, mediaAlt = '') {
 
     } catch (error) {
         console.error('Error:', error.message);
+        // Display error message to the user
+        displayErrorMessage(error.message || 'An unknown error occured. Please try again.');
     }
 }
 
