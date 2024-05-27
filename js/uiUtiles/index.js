@@ -3,7 +3,8 @@ import {
     updateUI, 
     addHoverEffectToImageContainers, 
     addRegularHoverEffect,
-    displayErrorMessage
+    displayErrorMessage,
+    addSearchLogic
  } from './uiUtils.js';
 
 import { setupNavToggle } from './nav.js';
@@ -15,5 +16,6 @@ export {
     setupNavToggle, 
     addHoverEffectToImageContainers, 
     addRegularHoverEffect, 
-    displayErrorMessage
+    displayErrorMessage,
+    addSearchLogic
 };

@@ -1,9 +1,9 @@
-import { 
+import {
     checkAuth,
     registerUser
 } from './auth/index.js';
 
-import { 
+import {
     displayAllBlogPosts,
     handleCreatePostFormSubmit,
     fetchAndDisplayBlogPost,
@@ -11,13 +11,15 @@ import {
     displayBlogPostDetails
 } from './blogPosts/index.js';
 
-import { 
-    checkAllStatuses, updateUI, setupNavToggle
+import {
+    checkAllStatuses, updateUI, setupNavToggle, addSearchLogic
 } from './uiUtiles/index.js';
 
-
+// Trigger the essential functions on page load
 document.addEventListener('DOMContentLoaded', () => {
+
     const pageId = document.body.id;
+    // Redirect to login if user not logged in and tries to access edit/create post page
     if ((pageId === 'editPostPage' || pageId === 'createPostPage') && !checkAuth()) {
         window.location.href = 'https://norofffeu.github.io/FED1-PE1-andgram/account/login.html';
         return;
@@ -32,39 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display blog posts in grid when on index page
     if (pageId === 'indexPage') {
         displayAllBlogPosts();
-
-        // Add search logic to blog post grid
-        const searchField = document.getElementById('searchField');
-        searchField.addEventListener('input', debounce(filterBlogPosts, 300));
-
-        function filterBlogPosts() {
-            const searchQuery = searchField.value.toLowerCase();
-            const blogPosts = document.querySelectorAll('.post');
-
-            blogPosts.forEach(post => {
-                const title = post.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(searchQuery)) {
-                    post.style.display = '';
-                } else {
-                    post.style.display = 'none';
-                }
-            });
-        }
-        function debounce(func, delay) {
-            let timeout;
-            return function() {
-                const context = this;
-                const args = arguments;
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(context, args), delay);
-            };
-        }
+        addSearchLogic();
     }
-    // Display all blog post details if on post page
+    // Display all blog post details if user is on blog post page
     else if (pageId === 'PostPage') {
         displayBlogPostDetails();
     }
-    // Display blog post details in edit form if on edit post page
+    // Display blog post details in edit form if user is on edit post page
     else if (pageId === 'editPostPage') {
         fetchAndDisplayBlogPost();
     }

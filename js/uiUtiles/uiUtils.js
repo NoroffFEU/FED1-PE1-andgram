@@ -202,7 +202,43 @@ function addRegularHoverEffect() {
   });
 }
 
-export { checkAllStatuses, updateUI, addHoverEffectToImageContainers, addRegularHoverEffect, displayErrorMessage };
+// Function to add search logic to blog post grid
+function addSearchLogic() {
+  const searchField = document.getElementById('searchField');
+  searchField.addEventListener('input', debounce(filterBlogPosts, 300));
+
+  function filterBlogPosts() {
+      const searchQuery = searchField.value.toLowerCase();
+      const blogPosts = document.querySelectorAll('.post');
+
+      blogPosts.forEach(post => {
+          const title = post.querySelector('h3').textContent.toLowerCase();
+          if (title.includes(searchQuery)) {
+              post.style.display = '';
+          } else {
+              post.style.display = 'none';
+          }
+      });
+  }
+  function debounce(func, delay) {
+      let timeout;
+      return function() {
+          const context = this;
+          const args = arguments;
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(context, args), delay);
+      };
+  }
+}
+
+export { 
+  checkAllStatuses, 
+  updateUI, 
+  addHoverEffectToImageContainers, 
+  addRegularHoverEffect, 
+  displayErrorMessage,
+  addSearchLogic
+ };
 
 
 
